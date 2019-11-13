@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="./estilos/style.css" />
+  <title>Formulario</title>
+  <!--fuente-->
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <form class="form" action="">
+    <div class="field field--nombre">
+      <label class="field__title" for="textId">Nombre de alumno: </label>
+      <input class="field__input" type="text" name="nombreAlumno" id="textId" />
+      <p class="field__error field__error--nombre"></p>
+    </div>
+    <div class="field field--sexo">
+      <label class="field__title" for="hombre">hombre</label>
+      <input class="field__input" type="radio" name="sexo" id="hombre" />
+      <label class="field__title" for="mujer">mujer</label>
+      <input class="field__input" type="radio" name="sexo" id="mujer">
+      <p class="field__error field__error--sexo"></p>
+    </div>
+    <div class="field field--condiciones">
+      <label class="field__title" for="condiciones">Aceptas las condiciones de uso</label>
+      <input class="field__input" type="checkbox" name="condiciones" id="condiciones" />
+      <p class="field__error field__error--condiciones"></p>
+    </div>
+    <div class="field">
+      <label class="field__title" for="hermanos">nº de hermanos:</label>
+      <select class="field__input--select" name="hermanos" id="hermanos">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+    <div class="field field--botones">
+      <button class="botones botones--enviar">Enviar</button>
+      <button class="botones">Reset</button>
+    </div>
+  </form>
+</body>
+<script src="./js/script.js"></script>
+
+</html>

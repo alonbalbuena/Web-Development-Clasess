@@ -1,0 +1,179 @@
+:root {
+  --rojo-oscuro: #cc8b9a;
+  --rojo-claro: #fd6a5d;
+  --blanco: #dcfcf3;
+  --azul-claro: #8db9c9;
+  --azul-oscura: #478196;
+}
+
+body {
+  /*cada seccion se mostrara una al lado de la otra*/
+  display: flex;
+}
+
+.seccion-productos {
+  /*dispondremos los productos en columnas*/
+  display: flex;
+  flex-direction: column;
+
+  /*estilo*/
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: var(--blanco);
+}
+
+.producto {
+  /*la imagen del producto y la informacion una al lado de la otra*/
+  display: flex;
+  justify-content: space-between;
+  /*creamos un tamaño predeficino para la celda del producto, y hacemos que el resto de elementos se adapten a este*/
+  width: 600px;
+  height: 200px;
+  /*separamos todo de los bordes*/
+  padding: 10px;
+}
+
+.producto__info {
+  /*la informacion la pondremos en columnas*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /*dejamos espacio en la informacion de cada producto*/
+  /*limitamos el tamaño de la informacion*/
+  width: 288px;
+}
+
+.producto__info-titulo {
+  /*p viene con un padding y margin y por tanto no se adapta*/
+  padding: 0;
+  margin: 0;
+  /*opciones de fuentes del titulo*/
+  font-size: 2em;
+  font-family: Arial;
+}
+.producto__info-titulo::first-letter {
+  /*la primera letra del producto  sera en mayuscula*/
+  text-transform: capitalize;
+}
+.producto__info-comentario {
+  /*opciones de fuentes del comentario*/
+  font-size: 15px;
+  font-family: Arial;
+}
+.producto__info-comentario::first-letter {
+  /*la primera letra de los comentarios sera en mayuscula*/
+  text-transform: capitalize;
+}
+
+.producto__imagen {
+  /*hacemos que la imagen tenga todo el alto y un ancho fijo para que se adapte al recuadro*/
+  height: 100%;
+  width: 300px;
+  /*con object-fit hacemos que cubra todo el recuadro sin perder la relacion de aspecto(aunque para ello se pierda un poco de foto).esto nos permite tener todas las fotos del mismo tamaño sin perder relacion de aspecto*/
+  object-fit: cover;
+}
+
+/*BOTON ESTANDAR*/
+.producto__boton {
+  width: 100%;
+  height: 30px;
+  align-self: flex-end;
+
+  /*fuente boton*/
+  font-size: 1.2em;
+  font-weight: bold;
+  text-transform: capitalize; /*mayus*/
+  font-family: Arial;
+}
+.producto__boton--grupoA {
+  border: 1px solid black;
+  background-color: var(--rojo-claro);
+}
+.producto__boton--grupoA:hover {
+  background-color: var(--rojo-oscuro);
+}
+.producto__boton--grupoB {
+  border: 1px solid black;
+  background-color: var(--azul-oscura);
+}
+.producto__boton--grupoB:hover {
+  background-color: var(--azul-claro);
+}
+
+/*##########################################################*/
+/*CSS PARA LOS GRUPOS*/
+/*##########################################################*/
+
+.seccion-grupos {
+  /*la zona de los grupos se mostrara una encima de la otra*/
+  display: flex;
+  flex-direction: column;
+}
+
+/*estilos para cada GRUPO*/
+.seccion-grupos__A {
+  /*hacemos que los productos se distribuyan en filas*/
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /*que se centren */
+  flex-wrap: wrap; /*que se redistribuyan con el ancho de la ventana*/
+
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: var(--rojo-oscuro);
+}
+.seccion-grupos__B {
+  /*hacemos que los productos se distribuyan en filas*/
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /*que se centren */
+  flex-wrap: wrap; /*que se redistribuyan con el ancho de la ventana*/
+
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: var(--azul-claro);
+}
+
+/*MINIATURAS DE PRODUCTOS*/
+.producto-grupo {
+  /*Cada miniatura del producto se adaptara al tamaño de la pantalla para ponerse debajo de otras, con un diseño responsive*/
+
+  width: 90px;
+  height: 110px;
+  /*hacemos que el producto aparezca con la foto encima y el titular debajo*/
+  display: flex;
+  flex-direction: column;
+  /*separacion entre producto*/
+  margin: 7px;
+
+  /*cada producto tendra un fondo que hace contraste con el nombre ademas de un redondeo en el borde inferior*/
+  background-color: var(--blanco);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.producto-grupo__imagen {
+  /*adaptamos al tamaño de la ventana la imagen, para que todas sean iguales manteniendo la relacion de aspecto*/
+  height: auto;
+  width: 100%;
+  object-fit: cover; /*en este caso al quererlas cuadradas se nos va contenido*/
+  flex-grow: 2; /*nos permite que ocupe el resto de la caja*/
+
+  /*estilo*/
+  border-radius: 5px;
+}
+.producto-grupo__titulo {
+  /*titulo de cada producto en la zona de grupos*/
+  padding: 0;
+  margin: 0;
+
+  /*lo colocamos abajo del todo de la celda*/
+  position: relative;
+  bottom: 0;
+
+  /*estilos de fuente*/
+  font-family: Arial;
+  text-align: center;
+}
+.producto-grupo__titulo::first-letter {
+  /*la primera letra de los productos de la zona de grupos es en mayusculas*/
+  text-transform: capitalize;
+}

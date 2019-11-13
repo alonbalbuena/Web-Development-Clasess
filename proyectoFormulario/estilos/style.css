@@ -1,0 +1,49 @@
+form {
+  font-family: 'Indie Flower', cursive;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+  width: 600px;
+}
+
+.field {
+
+  height: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  background-color: burlywood;
+}
+
+.field__title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.field__error{
+  color: red;
+  padding: 0;
+  margin: 0;
+}
+
+.field--botones{
+  height:30px;
+}
+
+.botones {
+  flex-grow: 1;
+  
+  border:none;
+  border-radius: 5px;
+  
+  /*transicion de colores*/
+  background-color: chocolate;
+  transition: background-color .5s ease;
+}
+.botones:hover{
+  background-color: red;
+}

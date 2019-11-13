@@ -1,0 +1,199 @@
+:root {
+  --rojo: #f26d85;
+  --azul: #a9d9d9;
+  --blanco: #f0f2eb;
+  --marron: #d9cdb8;
+  --naranja: #f28e85;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: var(--blanco);
+}
+
+/*BARRA DE NAVEGACION SUPERIOR*/
+.navegacion {
+  background-color: var(--rojo);
+  height: 50px;
+
+  /*ordenacion de los elementos de la barra*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /*Dejamos que la barra de navegacion sea 
+  siempre accesible en la parte de arriba*/
+  position: sticky;
+  top: 0;
+  z-index: 1;/*evitamos que las imagenes se superponga a la barra de nav.*/
+}
+.navegacion__logo {
+  width: 50px;
+  height: auto;
+}
+.navegacion__carrito {
+  width: 50px;
+  height: auto;
+}
+
+/*SECCIONES DE LA WEB*/
+.seccion {
+  border-bottom: 1px solid black;
+
+  /*reordenamos los bloques de cada seccion*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/*CARRITO*/
+.seccion-carrito{
+  /*colocamos el carrito justo debajo de la barra de nav*/
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 200px;
+  background-color: var(--marron);
+  max-height: 10px;
+  transition: max-height 0.5s ease-in-out;
+  overflow: hidden;
+}
+.seccion-carrito:hover{
+  max
+  -height: 305px;
+}
+.seccion__titulo {
+  text-align: center;
+  font-size: 2em;
+  /*fuentes de google fonts*/
+  font-family: "Big Shoulders Text", cursive;
+}
+.seccion__reordenar {
+  width: auto;
+  height: 30px;
+  display: block;
+}
+.seccion__productos {
+  /*hacemos que los productos se redistribuyan en funcion del ancho de pantalla*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  /*limitamos a 4 productos como maximo por columna*/
+  max-width: 840px;
+
+}
+.seccion__productos--grid-2 {
+}
+.seccion__productos--grid-2 > .producto {
+  width: calc(
+    50% - 60px
+  ); /*cambiamos el ancho de los productos al cambiar el grid*/
+  height: 800px; /*800px es la media de altura de las fotos*/
+}
+
+
+/*BLOQUE DE CADA PRODUCTO*/
+.producto {
+  background-color: var(--blanco);
+  position: relative;/*para colocar una foto encima de la otra*/
+  
+  /*colocamos el contenido dentro de cada producto*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  /*cada elemento dentro del producto ocupe todo el espacio*/
+  width: 200px;
+  height: 253px;
+  margin: 5px;
+
+  /*transicion al pasar el raton por encima para cambiar la foto*/
+  transition: background-image 0.5s ease;
+}
+.producto:hover > .boton {
+  /*cuando pasamos el raton por encima aparecen el boton*/
+  opacity: 1;
+}
+/*transicion de rotacion entre las dos imagenes.
+1- una foto la giramos desde el 0º al 90º
+2- giramos la otra de 90º al 180º
+3- backface-visibility para que no salga la parte de atras de la carta */
+.producto:hover > .producto__imagen--rotada1{
+  transform: rotateY(180deg);
+}
+.producto:hover > .producto__imagen--rotada2{
+  transform: rotateY(360deg);
+}
+.producto__imagen{
+  /*tamaño de imagen, cubriendo toda la caja*/
+  height: 100%;
+  width: 100%;
+  /*manteniendo a su vez su relacion de aspecto*/
+  object-fit: contain;
+}
+.producto__imagen--rotada1{
+  /*transicion de rotacion inicial*/
+  transform: rotateY(0deg);
+  transition: transform .5s ease-in-out;
+  backface-visibility: hidden;
+}
+.producto__imagen--rotada2{
+  position: absolute;
+  /*transicion de rotacion final*/
+  transform: rotateY(90deg);
+  transition: transform .5s ease-in-out;
+  backface-visibility: hidden;
+}
+
+
+/*INFORMACION DEL PRODUCTO*/
+.producto__info{
+  display: flex;
+  align-items: baseline;/*alineamos el tex*/
+  justify-content: space-around;
+
+  /*colocamos la informacion sobre la imagen,cambiando a la vez el tamaño de la celda del producto*/
+  position: absolute;
+  bottom: 0;
+
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  font-family:"Big Shoulders Text", cursive 
+}
+.producto__info-nombre {
+  font-size: 16px;
+}
+.producto__info-precio {
+  font-weight: bold;
+}
+
+
+/*BOTON GENERICO*/
+.boton {
+  background-color: var(--rojo);
+  color: var(--blanco);
+  border: none;
+  box-shadow:2px 2px black;
+  font-weight: bold;
+  text-transform: capitalize;
+
+  width: 100%;
+  height: 30px;
+  /*colocamos el boton sobre la informacion del producto*/
+  position: absolute;
+  bottom: 28%;
+  /*transicion de aparicion del boton*/
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.boton:hover {
+  background-color: var(--naranja);
+}
+
+/*boton secundario*/
+.boton--grande {
+  height: 70px;
+  border-width: 5px;
+}
