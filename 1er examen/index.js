@@ -59,6 +59,8 @@ window.onload = function init() {
       .querySelectorAll(".producto__boton")
       .forEach(boton => boton.removeEventListener("click", pulsarBoton));
 
+    document.querySelectorAll("");
+
     if (this.textContent == "grupo a") {
       //guardamos el producto solo en el grupo seleccionado
       document.querySelector(".seccion-grupos__A").appendChild(productoNuevo);

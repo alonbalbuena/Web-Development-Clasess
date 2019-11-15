@@ -1,0 +1,51 @@
+:root {
+  /*definimos un ancho de boton fijo*/
+  --alto-boton: 60px;
+  --ancho-boton: 200px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.fondo {
+  background-image: url("../img/tokyo.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.contenido {
+  position: absolute;
+
+  width: var(--ancho-boton);
+  /*resitribuimos automaticamente el tamaño para ser RESPONSIVE*/
+  left: calc(0px - var(--ancho-boton));
+
+  /*transicion de aparicion de todo el menu*/
+  transition: left 0.5s ease;
+}
+
+.contenido__boton {
+  height: var(--alto-boton);
+  width: var(--ancho-boton);
+
+  /*espacio entre botones de forma proporcional*/
+  /*acho de la ventana entre nºbotones - ancho de botones*/
+  margin-top: calc(100vh / 5 - var(--alto-boton));
+
+  /*estilo del boton*/
+  border: none;
+  background-color: #023373;
+  color: white;
+
+  font-family: "Major Mono Display", monospace;
+  font-size: 2em;
+  text-align: left;
+}
+
+/*cuando clicas fondo aparece el contenido desde abajo*/
+.fondo:hover .contenido {
+  left: 0;
+}
