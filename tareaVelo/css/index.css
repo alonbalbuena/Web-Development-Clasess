@@ -49,3 +49,47 @@ body {
 .fondo:hover .contenido {
   left: 0;
 }
+
+.menu {
+  /*posicion del menu*/
+  position: absolute;
+  right: 0;
+
+  /*zona que afecta el menu*/
+  height: 100vh;
+  width: 200px;
+}
+
+.menu__contenido {
+  background-color: rgba(0, 0, 0, 0.5);
+
+  /*ocupa toda la caja */
+  height: 100%;
+  width: 100%;
+
+  /*efecto de transicion*/
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.menu__boton {
+  /*el menu desencandenara la aparicion del RESTO del menu*/
+
+  /*tamaño del boton*/
+  width: 70px;
+  height: auto;
+
+  /*estilo boton*/
+  background-color: white;
+  border-radius: 300px;
+}
+
+.boton {
+  height: 50px;
+  /*ocupa todo el ancho por lo que se apilan*/
+  width: 100%;
+
+  /*estilo boton*/
+  border: none;
+  background-color: rosybrown;
+}
