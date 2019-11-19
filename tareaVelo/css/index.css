@@ -12,16 +12,14 @@ body {
 .fondo {
   background-image: url("../img/tokyo.jpg");
   background-size: cover;
-  background-position: center;
   height: 100vh;
 }
 
 .contenido {
-  position: absolute;
-
-  width: var(--ancho-boton);
-  /*resitribuimos automaticamente el tamaño para ser RESPONSIVE*/
+  position: relative;
   left: calc(0px - var(--ancho-boton));
+  /*resitribuimos automaticamente el tamaño para ser RESPONSIVE*/
+  width: var(--ancho-boton);
 
   /*transicion de aparicion de todo el menu*/
   transition: left 0.5s ease;
@@ -37,59 +35,94 @@ body {
 
   /*estilo del boton*/
   border: none;
-  background-color: #023373;
+  background-color: rgba(20, 87, 116, 0.8);
   color: white;
+  border-radius: 0 7px 7px 0;
 
+  /*que aparezca una manita al pasar el raton*/
+  cursor: pointer;
+
+  /*fuente*/
   font-family: "Major Mono Display", monospace;
   font-size: 2em;
   text-align: left;
 }
 
-/*cuando clicas fondo aparece el contenido desde abajo*/
 .fondo:hover .contenido {
   left: 0;
 }
 
+/*ESTILO DEL VELO */
 .menu {
-  /*posicion del menu*/
+  /*colocamos el menu sobre el fondo*/
   position: absolute;
-  right: 0;
+  top: 0;
 
-  /*zona que afecta el menu*/
+  /*el menu ocupa toda la pantalla como si fuera otra capa*/
   height: 100vh;
-  width: 200px;
-}
+  width: 100vw;
 
-.menu__contenido {
-  background-color: rgba(0, 0, 0, 0.5);
-
-  /*ocupa toda la caja */
-  height: 100%;
-  width: 100%;
-
-  /*efecto de transicion*/
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  /*transicion para la transparencia*/
+  transition: background-color 0.5s;
 }
 
 .menu__boton {
-  /*el menu desencandenara la aparicion del RESTO del menu*/
+  /*que aparezca una manita al pasar el raton*/
+  cursor: pointer;
+
+  /*posicion del boton en esta nueva capa*/
+  position: absolute;
+  right: 20px;
+  top: 20px;
 
   /*tamaño del boton*/
   width: 70px;
   height: auto;
+}
 
-  /*estilo boton*/
-  background-color: white;
-  border-radius: 300px;
+.menu__contenido {
+  /*por defecto no aparece para dejar que el boton lo haga*/
+  display: none;
+  transition: display 1s;
+
+  /*colocamos el contenido del menu en el centro*/
+  position: absolute;
+  top: calc(50vh - 50px * 2 + 15px); /*mitad pantalla - los 2 botones y margen*/
+  right: calc(50vw - 250px / 2); /*mitad de pantalla - mitad boton*/
+
+  /*ancho para que se ajusten los botones*/
+  width: 250px;
 }
 
 .boton {
-  height: 50px;
+  /*que aparezca una manita al pasar el raton*/
+  cursor: pointer;
+
   /*ocupa todo el ancho por lo que se apilan*/
+  height: 50px;
   width: 100%;
 
+  margin-bottom: 15px;
+
   /*estilo boton*/
+  background-color: white;
   border: none;
-  background-color: rosybrown;
+
+  /*fuente*/
+  font-family: "Major Mono Display", monospace;
+  font-weight: bold;
+}
+
+.boton:hover {
+  color: white;
+  background-color: transparent;
+  border: 3px solid white;
+}
+
+/*QUE CAMBIOS DE ESTILO OCURREN AL CLICKAR EL BOTON*/
+.menu--activo {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.menu--activo .menu__contenido {
+  display: initial;
 }

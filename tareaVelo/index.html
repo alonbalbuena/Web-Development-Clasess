@@ -12,6 +12,8 @@
       href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap"
       rel="stylesheet"
     />
+    <!--favicon-->
+    <link rel="shortcut icon" href="./img/favicon.jpg" type="image/x-icon" />
   </head>
   <body>
     <div class="fondo">
@@ -20,15 +22,20 @@
         <button class="contenido__boton">Eum?</button>
         <button class="contenido__boton">Quaerat.</button>
         <button class="contenido__boton">Quis.</button>
-        <button class="contenido__boton">Repellat.</button>
+        <button class="contenido__boton">Repellat</button>
       </div>
       <div class="menu">
-        <img class="menu__boton" src="./img/menu.png" alt="boton menu" />
+        <!--usamos svg para no tener pixeles en bordes-->
+        <img class="menu__boton" src="./img/hamburger.svg" alt="boton menu" />
         <div class="menu__contenido">
-          <button class="boton">hola</button>
-          <button class="boton">hey</button>
+          <!--link a la otra pagina-->
+          <button class="boton boton--tienda">tienda</button>
+          <button class="boton">contacto</button>
+          <p class="copyright">Creada por Alonso García Balbuena &copy;</p>
         </div>
       </div>
     </div>
   </body>
+  <!--SCRIPT-->
+  <script src="./js/index.js"></script>
 </html>
