@@ -1,0 +1,16 @@
+{
+  "tareas": [
+    {
+      "tarea": "tarea1",
+      "hecha": "no"
+    },
+    {
+      "tarea": "tarea2",
+      "hecha": "si"
+    },
+    {
+      "tarea": "tarea3",
+      "hecha": "no"
+    }
+  ]
+}

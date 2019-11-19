@@ -8,11 +8,15 @@ document.querySelector(".menu__boton").addEventListener("click", function() {
     menu.classList.add("menu--activo");
     /*desaparecen los botones que se deslizan*/
     contenido.style.display = "none";
+    /*usamos animacion*/
+    this.classList.add("menu__boton--activar");
   } else {
     /*volvemos a la normalidad*/
     menu.className = "menu";
     /*reaparcene los botones que se deslizan*/
-    contenido.style.display = "initial";
+    contenido.style.display = "block";
+    /*reiniciamos la animacion*/
+    this.className = "menu__boton";
   }
 });
 
