@@ -4,7 +4,9 @@ document.body.innerHTML = `
 <div class="lista">
 </div>
 `;
+getTareas();
 
+/*DECLARAMOS LAS FUNCIONES*/
 function getTareas() {
   const xhr = new XMLHttpRequest();
 
@@ -12,9 +14,7 @@ function getTareas() {
     /*pasamos el texto recibido a tipo JSON*/
     const json = JSON.parse(this.responseText);
     /*el metodo devolvera el array de tareas*/
-    const tareas = json.tareas.forEach(tarea =>
-      crearTarea(tarea.tarea, tarea.hecha)
-    );
+    json.tareas.forEach(tarea => crearTarea(tarea.tarea, tarea.hecha));
   };
 
   xhr.open("GET", "./js/lista.json", true);
@@ -23,11 +23,18 @@ function getTareas() {
 }
 
 function crearTarea(tarea, hecha) {
-  document.querySelector(".lista").innerHTML = `<div class="tarea">
-  <h1>${tarea}</h1>
-  <h1>${hecha}</h1>
+  //si introducimos si en la funcion devuelve checked
+  if (hecha == "si") {
+    hecha = "checked";
+  }
+
+  //checked es introducido en el input
+  //hacemos desaparecer input con css y usaremos solo label
+  document.querySelector(".lista").innerHTML += `<div class="tarea">
+  <p>${tarea}</p>
+  <input type="checkbox" id="${tarea}" ${hecha} ></input>
+  <label for="${tarea}" class="tarea__check">label</label>
   </div>
   `;
+  //usamos un id distinto para cada input/label que si no solo funcionario un boton
 }
-
-getTareas();

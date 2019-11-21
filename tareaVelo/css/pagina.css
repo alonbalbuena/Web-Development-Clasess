@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: aquamarine;
 }
 
 .titulo {
@@ -8,4 +9,27 @@ body {
 }
 
 .lista {
+  border: solid 2px red;
+}
+
+.tarea {
+  border: solid 1px black;
+}
+
+.tarea__check {
+  /*el label le hacemos una apariencia de boton*/
+  display: block;
+  border: black 1px solid;
+  background-color: greenyellow;
+}
+
+input[type="checkbox"] {
+  /*ocultamos el input para solo trabajar con el label*/
+  display: none;
+  /*usamos display porque asi no ocupa espacio*/
+}
+
+/*cambiamos el label en funcion de si esta activada la checkbox*/
+input:checked ~ .tarea__check {
+  background-color: red;
 }
