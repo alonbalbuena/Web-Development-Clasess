@@ -1,9 +1,9 @@
 /*Generamos contenido*/
 document.body.innerHTML = `
-<h1 class="titulo">Tareas por hacer</h1>
-<div class="lista">
-</div>
-`;
+  <h1 class="titulo">Tareas por hacer</h1>
+  <div class="lista">
+  </div>
+  `;
 getTareas();
 
 /*DECLARAMOS LAS FUNCIONES*/
@@ -14,7 +14,7 @@ function getTareas() {
     /*pasamos el texto recibido a tipo JSON*/
     const json = JSON.parse(this.responseText);
     /*el metodo devolvera el array de tareas*/
-    json.tareas.forEach(tarea => crearTarea(tarea.tarea, tarea.hecha));
+    json.forEach(tarea => crearTarea(tarea.tarea, tarea.hecha));
   };
 
   xhr.open("GET", "./js/lista.json", true);
@@ -23,8 +23,8 @@ function getTareas() {
 }
 
 function crearTarea(tarea, hecha) {
-  //si introducimos si en la funcion devuelve checked
-  if (hecha == "si") {
+  //si tarea esta hecha devuelve checked
+  if (hecha == "hecha") {
     hecha = "checked";
   }
 
@@ -36,5 +36,5 @@ function crearTarea(tarea, hecha) {
   <label for="${tarea}" class="tarea__check">label</label>
   </div>
   `;
-  //usamos un id distinto para cada input/label que si no solo funcionario un boton
+  //usamos un id distinto para cada input/label
 }

@@ -1,16 +1,14 @@
-{
-  "tareas": [
-    {
-      "tarea": "tarea1",
-      "hecha": "no"
-    },
-    {
-      "tarea": "tarea2",
-      "hecha": "si"
-    },
-    {
-      "tarea": "tarea3",
-      "hecha": "no"
-    }
-  ]
-}
+[
+  {
+    "tarea": "tarea1",
+    "hecha": "no hecha"
+  },
+  {
+    "tarea": "tarea2",
+    "hecha": "hecha"
+  },
+  {
+    "tarea": "tarea3",
+    "hecha": "no hecha"
+  }
+]
