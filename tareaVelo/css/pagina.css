@@ -3,50 +3,98 @@
   --hecho-borde: #4f8a10;
   --sinhacer: #ffd2d2;
   --sinhacer-borde: #d8000c;
+  --bordes: #d92b04;
+  --fondos: #e4ebf2;
+  --amarillo: #f2a20c;
+  --naranja: #f26b1d;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #003640;
+  background-color: #253759;
 }
 
 .titulo {
   color: white;
   text-align: center;
+
   font-family: "Julius Sans One", sans-serif;
+  font-size: 50px;
+}
+
+.titulo::first-letter {
+  font-size: 65px;
 }
 
 .lista {
-  border: 3px solid #f2cb05;
+  border: 4px solid var(--bordes);
+  border-radius: 4px;
+
   /*colocaremos las tareas como si fuese una tabla una a continuacion de otra*/
   display: table;
+
   width: 80%;
   margin: 0 10% 0 10%;
 }
 
 .tarea {
-  background-color: #ef5900;
-  font-family: "Do Hyeon", sans-serif;
+  background-color: var(--fondos);
+
+  /*fuente de google fonts*/
+  font-family: "Mukta Malar", sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+
   /*las tareas estaran ocupando toda una fila*/
   display: table-row;
 }
 
 .tarea__nombre {
+  /*al ser un p genera margen por defecto*/
+  margin: 0;
+
+  /*separamos del margen izquierdo*/
+  padding-left: 20px;
+
   /*queremos que se agrupen todos los elementos en filas*/
   display: table-cell;
+}
+
+/*el nombre de cada tarea empezara siempre en mayus*/
+.tarea__nombre::first-letter {
+  text-transform: capitalize;
 }
 
 .tarea__check {
   /*queremos que se agrupen todos los elementos en filas*/
   display: table-cell;
 
-  /*estilos*/
-  /*por defecto una tarea no esta hecha por tanto esta en rojo*/
-  border: 3px solid var(--sinhacer-borde);
-  background-color: var(--sinhacer);
+  /*para evitar que la tabla colapse por no tener contenido*/
+  width: 30px;
+
+  /*propiedades de fondo*/
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  /*icono de no hecha*/
+  background-image: url("../img/nohecha.png");
 }
 
+.tarea__eliminar {
+  /*alineamos al centro el boton de eliminar*/
+  vertical-align: middle;
+  position: relative;
+  left: calc(50% - 30px / 2);
+  /*modificamos el tamaño de la cruz para eliminar*/
+  width: 30px;
+  height: auto;
+  /*al pasar el cursor por encima que nos salga manita*/
+  cursor: pointer;
+}
+
+/*QUE OCURRE CUANDO LE DAMOS AL BOTON DE LABEL*/
 input[type="checkbox"] {
   /*ocultamos el input para solo trabajar con el label*/
   display: none;
@@ -54,7 +102,66 @@ input[type="checkbox"] {
 }
 
 /* cambiamos el label en funcion de si esta activada la checkbox*/
-input:checked ~ .tarea__check {
-  border-color: var(--hecho-borde);
-  background-color: var(--hecho);
+input:checked + .tarea__check {
+  background-image: url("../img/hecha.png");
+}
+
+.nueva-tarea {
+  /*tamaño de la caja*/
+  --ancho: 400px;
+
+  /*alineamos al centro*/
+  position: relative;
+  left: calc(50% - (var(--ancho) / 2));
+
+  width: var(--ancho);
+
+  /*estilo*/
+  border: 4px solid var(--bordes);
+  border-radius: 4px;
+  background-color: var(--fondos);
+
+  margin: 5px;
+  padding: 10px;
+}
+
+.nueva-tarea__texto {
+  border: 3px solid var(--bordes);
+  border-radius: 30px;
+
+  /*que ocupe todo para que se apilen*/
+  width: 100%;
+  height: 20px;
+
+  /*espacio entre objetos*/
+  margin-bottom: 10px;
+
+  /*estilo del placeholder y texto*/
+  text-align: center;
+  font-family: "Mukta Malar", sans-serif;
+}
+
+/*que ocurre al pulsar sobre el campo de texto*/
+.nueva-tarea__texto:focus + .boton {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--sinhacer-borde);
+}
+
+.boton {
+  /*que ocupe todo para que se apilen*/
+  border: none;
+  width: 100%;
+
+  /*tamaño del boton*/
+  height: 40px;
+
+  background-color: var(--amarillo);
+  border-radius: 30px;
+
+  /*estilo texto*/
+  font-family: "Mukta Malar", sans-serif;
+  font-size: larger;
+  font-weight: bold;
+  text-transform: uppercase;
 }

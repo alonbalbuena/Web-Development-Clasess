@@ -3,6 +3,10 @@ document.body.innerHTML = `
   <h1 class="titulo">Tareas por hacer</h1>
   <div class="lista">
   </div>
+  <div class ="nueva-tarea">
+    <input class="nueva-tarea__texto" type="text" placeholder="nueva tarea..." ></input>
+    <button class="boton">nueva tarea</button>
+  </div>
   `;
 getTareas();
 
@@ -28,13 +32,36 @@ function crearTarea(tarea, hecha) {
     hecha = "checked";
   }
 
-  //checked es introducido en el input
-  //hacemos desaparecer input con css y usaremos solo label
-  document.querySelector(".lista").innerHTML += `<div class="tarea">
-  <p>${tarea}</p>
+  //creamos el boton de eliminar
+  const eliminar = document.createElement("img");
+  eliminar.src = "./img/cross.png";
+  eliminar.className = "tarea__eliminar";
+  //para ponerle el  evento necesitamos crear previamente el elemento para introducirlo posteriormente en la tarea
+  eliminar.addEventListener("click", borrarTarea);
+
+  //creamos la tarea y le introducimos el boton
+  //1- checked es introducido en el input
+  //2- desaparecemos input y usamos solo label
+  //3- usamos un id distinto para cada input/label
+  const nuevaTarea = document.createElement("div");
+  nuevaTarea.className = "tarea";
+  nuevaTarea.innerHTML = `
+  <p class="tarea__nombre">${tarea}</p>
   <input type="checkbox" id="${tarea}" ${hecha} ></input>
-  <label for="${tarea}" class="tarea__check">label</label>
-  </div>
-  `;
-  //usamos un id distinto para cada input/label
+  <label for="${tarea}" class="tarea__check"></label>`;
+  nuevaTarea.appendChild(eliminar);
+
+  //añadimos esta tarea a la lista
+  document.querySelector(".lista").appendChild(nuevaTarea);
 }
+
+function borrarTarea() {
+  /*borra la tarea si seleccionamos el boton*/
+  this.parentNode.remove(this);
+}
+
+//QUE OCURRE SI PULSAMOS EL BOTON NUEVA TAREA
+document.querySelector(".boton").addEventListener("click", function() {
+  /*cojemos el text del input y creamos una tarea con el*/
+  crearTarea(this.previousElementSibling.value, "no");
+});
