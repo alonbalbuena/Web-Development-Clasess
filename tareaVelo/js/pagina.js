@@ -51,13 +51,25 @@ function crearTarea(tarea, hecha) {
   <label for="${tarea}" class="tarea__check"></label>`;
   nuevaTarea.appendChild(eliminar);
 
-  //añadimos esta tarea a la lista
+  //antes de añadir la tarea comprobamos si ya existe
+  //no podemos usar some si no es array
+  console.log(tareaExiste(tarea));
+
   document.querySelector(".lista").appendChild(nuevaTarea);
+}
+
+function tareaExiste(nombreTarea) {
+  //devolvemos true si existe una tarea igual
+  document.querySelectorAll(".tarea__nombre").forEach(nombre => {
+    if (nombre.textContent == nombreTarea) {
+      return true;
+    }
+  });
 }
 
 function borrarTarea() {
   /*borra la tarea si seleccionamos el boton*/
-  this.parentNode.remove(this);
+  this.parentNode.remove();
 }
 
 //QUE OCURRE SI PULSAMOS EL BOTON NUEVA TAREA
