@@ -52,19 +52,24 @@ function crearTarea(tarea, hecha) {
   nuevaTarea.appendChild(eliminar);
 
   //antes de añadir la tarea comprobamos si ya existe
-  //no podemos usar some si no es array
-  console.log(tareaExiste(tarea));
-
-  document.querySelector(".lista").appendChild(nuevaTarea);
+  //usamos el operador de PROPAGACION
+  if (
+    ![...document.querySelectorAll(".tarea__nombre")].some(
+      nombre => nombre.textContent == tarea
+    )
+  ) {
+    //si no existe añadimos
+    document.querySelector(".lista").appendChild(nuevaTarea);
+  } else {
+    console.log("ya existe");
+  }
 }
 
 function tareaExiste(nombreTarea) {
   //devolvemos true si existe una tarea igual
-  document.querySelectorAll(".tarea__nombre").forEach(nombre => {
-    if (nombre.textContent == nombreTarea) {
-      return true;
-    }
-  });
+  [...document.querySelectorAll(".tarea__nombre")].some(
+    nombre => nombre.textContent == nombreTarea
+  );
 }
 
 function borrarTarea() {
