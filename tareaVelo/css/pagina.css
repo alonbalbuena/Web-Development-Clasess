@@ -3,24 +3,41 @@
   --hecho-borde: #4f8a10;
   --sinhacer: #ffd2d2;
   --sinhacer-borde: #d8000c;
-  --bordes: #d92b04;
-  --fondos: #e4ebf2;
+  --bordes: #bf6600;
+  --fondos: white;
+  /* --fondos: #e4ebf2; */
   --amarillo: #f2a20c;
-  --naranja: #f26b1d;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #253759;
+  background-color: #145774;
 }
 
 .titulo {
   color: white;
   text-align: center;
+  text-shadow: 1px 1px 3px black;
 
   font-family: "Julius Sans One", sans-serif;
   font-size: 50px;
+}
+/*figura tras el titulo*/
+.titulo:before {
+  content: "";
+  /*creamos el triangulo*/
+  border-top: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-right: 80px solid var(--amarillo);
+
+  /*posicionamos la figura*/
+  position: absolute;
+  z-index: -1;
+  top: 20px;
+
+  /*estilos de la figura*/
+  background-image: linear-gradient(black, white);
 }
 
 .titulo::first-letter {
@@ -40,6 +57,7 @@ body {
 
 .tarea {
   background-color: var(--fondos);
+  border-bottom: 1px solid black;
 
   /*fuente de google fonts*/
   font-family: "Mukta Malar", sans-serif;
@@ -48,11 +66,13 @@ body {
 
   /*las tareas estaran ocupando toda una fila*/
   display: table-row;
+  height: 50px;
 }
 
 .tarea__nombre {
   /*al ser un p genera margen por defecto*/
   margin: 0;
+  vertical-align: middle;
 
   /*separamos del margen izquierdo*/
   padding-left: 20px;
@@ -69,6 +89,7 @@ body {
 .tarea__check {
   /*queremos que se agrupen todos los elementos en filas*/
   display: table-cell;
+  vertical-align: middle;
 
   /*para evitar que la tabla colapse por no tener contenido*/
   width: 30px;
@@ -84,12 +105,14 @@ body {
 
 .tarea__eliminar {
   /*alineamos al centro el boton de eliminar*/
-  vertical-align: middle;
   position: relative;
   left: calc(50% - 30px / 2);
+  top: 13px;
+
   /*modificamos el tamaño de la cruz para eliminar*/
-  width: 30px;
+  width: 20px;
   height: auto;
+
   /*al pasar el cursor por encima que nos salga manita*/
   cursor: pointer;
 }
@@ -130,11 +153,12 @@ input:checked + .tarea__check {
   border-radius: 30px;
 
   /*que ocupe todo para que se apilen*/
-  width: 100%;
+  width: 80%;
   height: 20px;
 
   /*espacio entre objetos*/
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  margin-left: 35px;
 
   /*estilo del placeholder y texto*/
   text-align: center;
@@ -151,7 +175,8 @@ input:checked + .tarea__check {
 .boton {
   /*que ocupe todo para que se apilen*/
   border: none;
-  width: 100%;
+  width: calc(80% + 3px);
+  margin-left: 35px;
 
   /*tamaño del boton*/
   height: 40px;
@@ -164,4 +189,7 @@ input:checked + .tarea__check {
   font-size: larger;
   font-weight: bold;
   text-transform: uppercase;
+}
+.boton:hover {
+  background-color: #bf6600;
 }

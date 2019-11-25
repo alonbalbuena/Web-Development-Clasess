@@ -34,7 +34,7 @@ function crearTarea(tarea, hecha) {
 
   //creamos el boton de eliminar
   const eliminar = document.createElement("img");
-  eliminar.src = "./img/cross.png";
+  eliminar.src = "./img/delete-button.svg";
   eliminar.className = "tarea__eliminar";
   //para ponerle el  evento necesitamos crear previamente el elemento para introducirlo posteriormente en la tarea
   eliminar.addEventListener("click", borrarTarea);
