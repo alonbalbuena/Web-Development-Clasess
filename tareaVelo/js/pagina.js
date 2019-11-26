@@ -74,8 +74,25 @@ function crearTarea(tarea, hecha) {
   <label for="${tarea}" class="tarea__check"></label>`;
   nuevaTarea.appendChild(eliminar);
 
-  //añadimos esta tarea a la lista
-  document.querySelector(".lista").appendChild(nuevaTarea);
+  //antes de añadir la tarea comprobamos si ya existe
+  //usamos el operador de PROPAGACION
+  if (
+    ![...document.querySelectorAll(".tarea__nombre")].some(
+      nombre => nombre.textContent == tarea
+    )
+  ) {
+    //si no existe añadimos
+    document.querySelector(".lista").appendChild(nuevaTarea);
+  } else {
+    console.log("ya existe");
+  }
+}
+
+function tareaExiste(nombreTarea) {
+  //devolvemos true si existe una tarea igual
+  [...document.querySelectorAll(".tarea__nombre")].some(
+    nombre => nombre.textContent == nombreTarea
+  );
 }
 
 function borrarTarea() {
