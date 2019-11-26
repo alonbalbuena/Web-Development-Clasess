@@ -2,12 +2,12 @@
 const botonAjax = document.createElement("button");
 botonAjax.textContent = "petición ajax";
 botonAjax.className = "boton-ajax";
-botonAjax.addEventListener("click", getContenido);
+botonAjax.addEventListener("click", crearContenido);
 document.body.appendChild(botonAjax);
 
 //FUNCIONES QUE NOS GENERARAN EL CONTENIDO DINAMICO
 
-function getContenido() {
+function crearContenido() {
   /*Al generar el contenido borra el boton */
   botonAjax.remove();
 
@@ -19,13 +19,21 @@ function getContenido() {
     <div class ="nueva-tarea">
       <input class="nueva-tarea__texto" type="text" placeholder="nueva tarea..." ></input>
       <button class="boton">nueva tarea</button>
+      <p class="error"></p>
     </div>
+    <img class="volver volver--activar" src="./img/volver.svg" alt="volver">
     `;
 
   //QUE OCURRE SI PULSAMOS EL BOTON NUEVA TAREA
   document.querySelector(".boton").addEventListener("click", function() {
     /*cojemos el text del input y creamos una tarea con el*/
     crearTarea(this.previousElementSibling.value, "no");
+  });
+
+  //QUE OCURRE SI PULSAMOS EL BOTON DE VOLVERs
+  document.querySelector(".volver").addEventListener("click", function() {
+    /*volvemos al inicio*/
+    location.replace("./index.html");
   });
 
   //llamamos a la peticion ajax
@@ -76,6 +84,8 @@ function crearTarea(tarea, hecha) {
 
   //antes de añadir la tarea comprobamos si ya existe
   //usamos el operador de PROPAGACION
+  //que nos permite convertir cualquier objeto ITERABLE en un array
+  //(en este caso)
   if (
     ![...document.querySelectorAll(".tarea__nombre")].some(
       nombre => nombre.textContent == tarea
@@ -83,16 +93,11 @@ function crearTarea(tarea, hecha) {
   ) {
     //si no existe añadimos
     document.querySelector(".lista").appendChild(nuevaTarea);
+    document.querySelector(".error").textContent = "";
   } else {
-    console.log("ya existe");
+    //si ya existe lanzamos un error
+    document.querySelector(".error").textContent = "Ya existe esa tarea";
   }
-}
-
-function tareaExiste(nombreTarea) {
-  //devolvemos true si existe una tarea igual
-  [...document.querySelectorAll(".tarea__nombre")].some(
-    nombre => nombre.textContent == nombreTarea
-  );
 }
 
 function borrarTarea() {
