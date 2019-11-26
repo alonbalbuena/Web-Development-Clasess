@@ -41,6 +41,7 @@ function crearContenido() {
 }
 
 function getTareas() {
+  /*usamos el objeto de ajax para hacer peticiones asincronas*/
   const xhr = new XMLHttpRequest();
 
   xhr.onload = function() {
