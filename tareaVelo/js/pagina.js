@@ -1,16 +1,37 @@
-/*Generamos contenido*/
-document.body.innerHTML = `
-  <h1 class="titulo">Tareas por hacer</h1>
-  <div class="lista">
-  </div>
-  <div class ="nueva-tarea">
-    <input class="nueva-tarea__texto" type="text" placeholder="nueva tarea..." ></input>
-    <button class="boton">nueva tarea</button>
-  </div>
-  `;
-getTareas();
+/*Boton con peticion AJAX que genera todo el contenido en el JSON*/
+const botonAjax = document.createElement("button");
+botonAjax.textContent = "petición ajax";
+botonAjax.className = "boton-ajax";
+botonAjax.addEventListener("click", getContenido);
+document.body.appendChild(botonAjax);
 
-/*DECLARAMOS LAS FUNCIONES*/
+//FUNCIONES QUE NOS GENERARAN EL CONTENIDO DINAMICO
+
+function getContenido() {
+  /*Al generar el contenido borra el boton */
+  botonAjax.remove();
+
+  /*Generamos contenido*/
+  document.body.innerHTML += `
+    <h1 class="titulo">Tareas por hacer</h1>
+    <div class="lista">
+    </div>
+    <div class ="nueva-tarea">
+      <input class="nueva-tarea__texto" type="text" placeholder="nueva tarea..." ></input>
+      <button class="boton">nueva tarea</button>
+    </div>
+    `;
+
+  //QUE OCURRE SI PULSAMOS EL BOTON NUEVA TAREA
+  document.querySelector(".boton").addEventListener("click", function() {
+    /*cojemos el text del input y creamos una tarea con el*/
+    crearTarea(this.previousElementSibling.value, "no");
+  });
+
+  //llamamos a la peticion ajax
+  getTareas();
+}
+
 function getTareas() {
   const xhr = new XMLHttpRequest();
 
@@ -19,6 +40,8 @@ function getTareas() {
     const json = JSON.parse(this.responseText);
     /*el metodo devolvera el array de tareas*/
     json.forEach(tarea => crearTarea(tarea.tarea, tarea.hecha));
+    /*usamos la funcion crearTarea para limpieza de codigo.
+    Le pasamos el nombre de la tarea y si esta hecha*/
   };
 
   xhr.open("GET", "./js/lista.json", true);
@@ -39,7 +62,7 @@ function crearTarea(tarea, hecha) {
   //para ponerle el  evento necesitamos crear previamente el elemento para introducirlo posteriormente en la tarea
   eliminar.addEventListener("click", borrarTarea);
 
-  //creamos la tarea y le introducimos el boton
+  //creamos la tarea y le introducimos el boton, ademas de:
   //1- checked es introducido en el input
   //2- desaparecemos input y usamos solo label
   //3- usamos un id distinto para cada input/label
@@ -57,11 +80,5 @@ function crearTarea(tarea, hecha) {
 
 function borrarTarea() {
   /*borra la tarea si seleccionamos el boton*/
-  this.parentNode.remove(this);
+  this.parentNode.remove();
 }
-
-//QUE OCURRE SI PULSAMOS EL BOTON NUEVA TAREA
-document.querySelector(".boton").addEventListener("click", function() {
-  /*cojemos el text del input y creamos una tarea con el*/
-  crearTarea(this.previousElementSibling.value, "no");
-});

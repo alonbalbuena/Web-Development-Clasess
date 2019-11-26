@@ -15,6 +15,34 @@ body {
   background-color: #145774;
 }
 
+.boton-ajax {
+  /*estilo del contenedor*/
+  background-color: var(--amarillo);
+  border: none;
+  box-shadow: 3px 4px black;
+
+  /*centrado en la ventana*/
+  position: absolute;
+  bottom: calc(50% - (80px / 2));
+  right: calc(50% - (350px / 2));
+
+  /*tamaño del boton*/
+  width: 350px;
+  height: 80px;
+
+  /*fuente y sombreado*/
+  font-family: "Julius Sans One", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px white;
+}
+.boton-ajax:hover {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--sinhacer-borde);
+}
+
 .titulo {
   color: white;
   text-align: center;
@@ -181,8 +209,10 @@ input:checked + .tarea__check {
   /*tamaño del boton*/
   height: 40px;
 
+  /*estilo del contenedor*/
   background-color: var(--amarillo);
   border-radius: 30px;
+  box-shadow: 2px 2px black;
 
   /*estilo texto*/
   font-family: "Mukta Malar", sans-serif;
@@ -191,5 +221,12 @@ input:checked + .tarea__check {
   text-transform: uppercase;
 }
 .boton:hover {
-  background-color: #bf6600;
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--sinhacer-borde);
+}
+.boton:active {
+  transform: translateY(2px);
+  box-shadow: none;
+  outline: ;
 }
