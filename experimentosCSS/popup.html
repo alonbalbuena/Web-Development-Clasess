@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>pop-up</title>
+    <style>
+      body {
+        background: rebeccapurple;
+      }
+      p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: xx-large;
+      }
+      .pop-up {
+        color: red;
+        /*usamos relative para que las coordenadas(left,right...) de after,before sean respecto a el */
+        position: relative;
+      }
+      .pop-up::before {
+        /*TRANGULO*/
+        content: "";
+        /*para que (after,before) se colocen encima de el*/
+        position: absolute;
+        top: 15px;
+        /*solo ponemos el borde de abajo
+        (que desde donde queremos que apunte)*/
+        border-top: 15px solid transparent;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        /*colores #rrggbbaa*/
+        border-bottom: 15px solid #000000cc;
+        /*que no se vea, solo con hover*/
+        display: none;
+      }
+      .pop-up::after {
+        /*RECTANGULO*/
+        /*el texto es introducido con atributos*/
+        /*el atributo es creado con JS*/
+        content: attr(data-popup);
+        /*para que (after,before) se colocen encima de el*/
+        position: absolute;
+        top: 45px;
+        left: 0;
+        /*colores #RGBA*/
+        background: #000c;
+        color: white;
+        /*que no se vea, solo con hover*/
+        display: none;
+      }
+      .pop-up:hover::after,
+      .pop-up:hover::before {
+        /*que aparezca el popup al hover*/
+        display: initial;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      Lorem,<span class="pop-up">dolor</span> sit amet consectetur adipisicing
+      elit. Illum perferendis iste sunt quibusdam obcaecati sit fugit atque
+      quidem nobis animi nisi voluptas, impedit vero, rem consequuntur
+      <span class="pop-up">adipisci</span>
+      pariatur? Corporis, facilis?
+    </p>
+  </body>
+  <script>
+    document
+      .querySelectorAll(".pop-up")
+      .forEach(pop => pop.setAttribute("data-popup", "hola que tal"));
+  </script>
+</html>
