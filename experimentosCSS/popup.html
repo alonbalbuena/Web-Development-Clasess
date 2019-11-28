@@ -7,7 +7,7 @@
     <title>pop-up</title>
     <style>
       body {
-        background: rebeccapurple;
+        background: white;
       }
       p {
         font-family: Arial, Helvetica, sans-serif;
@@ -43,6 +43,11 @@
         position: absolute;
         top: 45px;
         left: 0;
+
+        /*ponemos un tamaño fijo para usar overflow*/
+        height: 100px;
+        overflow-y: scroll;
+
         /*colores #RGBA*/
         background: #000c;
         color: white;
@@ -54,6 +59,34 @@
         /*que aparezca el popup al hover*/
         display: initial;
       }
+      .circulo {
+        background-color: rebeccapurple;
+        position: relative;
+        width: 100px;
+        height: 100px;
+        clip-path: circle(50px);
+      }
+      .circulo::before {
+        content: "";
+        background: red;
+        width: 10px;
+        height: 10px;
+        clip-path: circle(5px);
+        position: absolute;
+        right: 45px;
+        top: 45px;
+      }
+      .contenedor {
+        /*al usar height y width a que queremos que afecte si al contenido y al borde o solo al contenido*/
+        box-sizing: content-box;
+        /*cambiaremos la propiedad en js para ver la diferencia*/
+        width: 300px;
+        height: 300px;
+
+        background-color: red;
+        /*al aumentar el borde se aumenta el tamaño de la caja*/
+        border: 50px solid black;
+      }
     </style>
   </head>
   <body>
@@ -64,10 +97,42 @@
       <span class="pop-up">adipisci</span>
       pariatur? Corporis, facilis?
     </p>
+    <div class="circulo"></div>
+
+    <div class="contenedor">
+      PRUEBAS DE CONTENEDOR Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Deserunt, debitis.
+      <button class="box-sizing"></button>
+      <p class="height"></p>
+    </div>
   </body>
   <script>
     document
       .querySelectorAll(".pop-up")
-      .forEach(pop => pop.setAttribute("data-popup", "hola que tal"));
+      .forEach(pop =>
+        pop.setAttribute(
+          "data-popup",
+          "hola que tal vamos a poner mucho texto para que el popup pete "
+        )
+      );
+
+    const contenedor = document.querySelector(".contenedor");
+
+    const boton = document.querySelector(".box-sizing");
+    boton.textContent = "clickame";
+
+    const height = document.querySelector(".height");
+
+    boton.addEventListener("click", function() {
+      if (boton.textContent != "content-box") {
+        contenedor.style.boxSizing = "content-box";
+        boton.textContent = "content-box";
+        height.textContent = "500px";
+      } else {
+        contenedor.style.boxSizing = "border-box";
+        boton.textContent = "border-box";
+        height.textContent = "400px";
+      }
+    });
   </script>
 </html>
