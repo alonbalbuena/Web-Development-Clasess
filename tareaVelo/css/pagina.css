@@ -1,11 +1,8 @@
 :root {
-  --hecho: #dff2bf;
-  --hecho-borde: #4f8a10;
-  --sinhacer: #ffd2d2;
-  --sinhacer-borde: #d8000c;
-  --bordes: #bf6600;
+  --error: #ffd2d2;
+  --error-intenso: #d8000c;
+  --marron: #bf6600;
   --fondos: white;
-  /* --fondos: #e4ebf2; */
   --amarillo: #f2a20c;
 }
 
@@ -13,6 +10,44 @@ body {
   margin: 0;
   padding: 0;
   background-color: #145774;
+}
+
+/*BOTON QUE HACE PETICION AJAX CON ANIMACION*/
+.boton-ajax {
+  /*estilo del contenedor*/
+  background-color: var(--amarillo);
+  border: none;
+  box-shadow: 3px 4px black;
+
+  /*centrado en la ventana*/
+  position: absolute;
+  bottom: calc(50% - (80px / 2));
+  right: calc(50% - (350px / 2));
+
+  /*tamaño del boton*/
+  width: 350px;
+  height: 80px;
+
+  /*fuente y sombreado*/
+  font-family: "Julius Sans One", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px white;
+
+  /*animacion que se le aplica solo activada en hover*/
+  animation-name: animacion-boton;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; /*queremos un movimiento fluido*/
+
+  animation-play-state: paused;
+}
+.boton-ajax:hover {
+  /*que aparezca la mano en el cursor*/
+  cursor: pointer;
+  /*activamos la animacion*/
+  animation-play-state: running;
 }
 
 .titulo {
@@ -23,29 +58,32 @@ body {
   font-family: "Julius Sans One", sans-serif;
   font-size: 50px;
 }
+.titulo::first-letter {
+  font-size: 70px;
+}
 /*figura tras el titulo*/
-.titulo:before {
+.titulo::before {
   content: "";
   /*creamos el triangulo*/
   border-top: 50px solid transparent;
-  border-bottom: 50px solid transparent;
-  border-right: 80px solid var(--amarillo);
+  border-bottom: 30px solid transparent;
+  border-right: 475px solid var(--amarillo);
 
   /*posicionamos la figura*/
   position: absolute;
   z-index: -1;
-  top: 20px;
+  transform: rotate(-3.5deg);
+  top: 30px;
 
-  /*estilos de la figura*/
-  background-image: linear-gradient(black, white);
+  /*transicion de la figura al hover*/
+  transition: border-right 1s linear;
 }
-
-.titulo::first-letter {
-  font-size: 65px;
+.titulo:hover::before {
+  /*cambiamos el color*/
+  border-right: 475px solid var(--marron);
 }
-
 .lista {
-  border: 4px solid var(--bordes);
+  border: 4px solid var(--marron);
   border-radius: 4px;
 
   /*colocaremos las tareas como si fuese una tabla una a continuacion de otra*/
@@ -67,6 +105,14 @@ body {
   /*las tareas estaran ocupando toda una fila*/
   display: table-row;
   height: 50px;
+}
+.tarea:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/*al pasar por cada tarea bajamos el tono*/
+.tarea:hover {
+  background-color: rgb(243, 221, 181);
 }
 
 .tarea__nombre {
@@ -140,17 +186,20 @@ input:checked + .tarea__check {
   width: var(--ancho);
 
   /*estilo*/
-  border: 4px solid var(--bordes);
+  border: 4px solid var(--marron);
   border-radius: 4px;
   background-color: var(--fondos);
 
+  /*separacion entre campos*/
   margin: 5px;
-  padding: 10px;
+  padding: 25px 10px 10px 10px;
 }
 
 .nueva-tarea__texto {
-  border: 3px solid var(--bordes);
+  /*estilos contenedor*/
+  border: 3px solid var(--marron);
   border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.15);
 
   /*que ocupe todo para que se apilen*/
   width: 80%;
@@ -163,13 +212,19 @@ input:checked + .tarea__check {
   /*estilo del placeholder y texto*/
   text-align: center;
   font-family: "Mukta Malar", sans-serif;
+  z-index: -1;
 }
 
 /*que ocurre al pulsar sobre el campo de texto*/
+.nueva-tarea__texto:focus,
+.nueva-tarea__texto:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .nueva-tarea__texto:focus + .boton {
   text-decoration: underline;
   text-decoration-style: wavy;
-  text-decoration-color: var(--sinhacer-borde);
+  text-decoration-color: var(--error-intenso);
 }
 
 .boton {
@@ -181,8 +236,10 @@ input:checked + .tarea__check {
   /*tamaño del boton*/
   height: 40px;
 
+  /*estilo del contenedor*/
   background-color: var(--amarillo);
   border-radius: 30px;
+  box-shadow: 2px 2px var(--marron);
 
   /*estilo texto*/
   font-family: "Mukta Malar", sans-serif;
@@ -191,5 +248,64 @@ input:checked + .tarea__check {
   text-transform: uppercase;
 }
 .boton:hover {
-  background-color: #bf6600;
+  /*que aparezca la mano en el cursor*/
+  cursor: pointer;
+  /*cambiamos un poco el tono del color ya existente*/
+  background-color: rgba(242, 162, 12, 0.8);
+}
+.boton:active {
+  /*al pulsar el boton se hunde */
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+/*ERROR SI METEMOS UNA TAREA QUE YA EXISTE*/
+.error {
+  color: var(--error-intenso);
+  background-color: var(--error);
+
+  text-align: center;
+  font-family: "Mukta Malar", sans-serif;
+  font-weight: bolder;
+
+  /*centro el error*/
+  margin-top: 25px;
+}
+
+/*BOTON DE VOLVER*/
+.volver {
+  /*colocamos en la esquina inf-izq*/
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  /*tamaño imagen*/
+  width: 130px;
+  height: auto;
+  /*animacion para volver de pagina*/
+  transition: transform 0.5s;
+}
+.volver:hover {
+  /*se gira al activarlo con js*/
+  transform: rotate(-45deg);
+  /*cursor con manita*/
+  cursor: pointer;
+}
+
+/*ANIMACION BOTON PETICION AJAX*/
+@keyframes animacion-boton {
+  0% {
+    background-color: var(--amarillo);
+    transform: scaleY(1);
+    transform: scaleX(1);
+  }
+  50% {
+    background-color: var(--marron);
+    transform: scaleY(1.3);
+    transform: scaleX(1.05);
+  }
+  100% {
+    background-color: var(--amarillo);
+    transform: scaleY(1);
+    transform: scaleX(1);
+  }
 }

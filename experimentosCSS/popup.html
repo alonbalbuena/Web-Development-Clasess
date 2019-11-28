@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>pop-up</title>
+    <style>
+      body {
+        background: white;
+      }
+      p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: xx-large;
+      }
+      .pop-up {
+        color: red;
+        /*usamos relative para que las coordenadas(left,right...) de after,before sean respecto a el */
+        position: relative;
+      }
+      .pop-up::before {
+        /*TRANGULO*/
+        content: "";
+        /*para que (after,before) se colocen encima de el*/
+        position: absolute;
+        top: 15px;
+        /*solo ponemos el borde de abajo
+        (que desde donde queremos que apunte)*/
+        border-top: 15px solid transparent;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        /*colores #rrggbbaa*/
+        border-bottom: 15px solid #000000cc;
+        /*que no se vea, solo con hover*/
+        display: none;
+      }
+      .pop-up::after {
+        /*RECTANGULO*/
+        /*el texto es introducido con atributos*/
+        /*el atributo es creado con JS*/
+        content: attr(data-popup);
+        /*para que (after,before) se colocen encima de el*/
+        position: absolute;
+        top: 45px;
+        left: 0;
+
+        /*ponemos un tamaño fijo para usar overflow*/
+        height: 100px;
+        overflow-y: scroll;
+
+        /*colores #RGBA*/
+        background: #000c;
+        color: white;
+        /*que no se vea, solo con hover*/
+        display: none;
+      }
+      .pop-up:hover::after,
+      .pop-up:hover::before {
+        /*que aparezca el popup al hover*/
+        display: initial;
+      }
+      .circulo {
+        background-color: rebeccapurple;
+        position: relative;
+        width: 100px;
+        height: 100px;
+        clip-path: circle(50px);
+      }
+      .circulo::before {
+        content: "";
+        background: red;
+        width: 10px;
+        height: 10px;
+        clip-path: circle(5px);
+        position: absolute;
+        right: 45px;
+        top: 45px;
+      }
+      .contenedor {
+        /*al usar height y width a que queremos que afecte si al contenido y al borde o solo al contenido*/
+        box-sizing: content-box;
+        /*cambiaremos la propiedad en js para ver la diferencia*/
+        width: 300px;
+        height: 300px;
+
+        background-color: red;
+        /*al aumentar el borde se aumenta el tamaño de la caja*/
+        border: 50px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      Lorem,<span class="pop-up">dolor</span> sit amet consectetur adipisicing
+      elit. Illum perferendis iste sunt quibusdam obcaecati sit fugit atque
+      quidem nobis animi nisi voluptas, impedit vero, rem consequuntur
+      <span class="pop-up">adipisci</span>
+      pariatur? Corporis, facilis?
+    </p>
+    <div class="circulo"></div>
+
+    <div class="contenedor">
+      PRUEBAS DE CONTENEDOR Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Deserunt, debitis.
+      <button class="box-sizing"></button>
+      <p class="height"></p>
+    </div>
+  </body>
+  <script>
+    document
+      .querySelectorAll(".pop-up")
+      .forEach(pop =>
+        pop.setAttribute(
+          "data-popup",
+          "hola que tal vamos a poner mucho texto para que el popup pete "
+        )
+      );
+
+    const contenedor = document.querySelector(".contenedor");
+
+    const boton = document.querySelector(".box-sizing");
+    boton.textContent = "clickame";
+
+    const height = document.querySelector(".height");
+
+    boton.addEventListener("click", function() {
+      if (boton.textContent != "content-box") {
+        contenedor.style.boxSizing = "content-box";
+        boton.textContent = "content-box";
+        height.textContent = "500px";
+      } else {
+        contenedor.style.boxSizing = "border-box";
+        boton.textContent = "border-box";
+        height.textContent = "400px";
+      }
+    });
+  </script>
+</html>
