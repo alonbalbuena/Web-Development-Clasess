@@ -1,24 +1,21 @@
 const carrito = document.querySelector(".seccion-carrito");
 
-const productos = document.querySelector(".seccion__productos").childNodes;
+const productos = document.querySelectorAll(".producto");
 
 productos.forEach(producto => {
-    const productoCarrito = document.createElement("p");
-    productoCarrito.className = "producto-carrito";
+  const productoCarrito = document.createElement("p");
+  productoCarrito.className = "producto-carrito";
 
-    //si es un objeton vacio no hace na
-    if (producto.firstChild == null) {
+  productoCarrito.textContent =
+    producto.children[3].firstElementChild.textContent +
+    producto.children[3].lastElementChild.textContent;
 
-    } else {
-        /*Copiamos el nombre del producto */
-        /*producto->(7)producto_info->(1)h1 */
-        //productoCarrito.textContent = producto.lastChild.firstChild.textContent;
-
-        productoCarrito.textContent = producto.childNodes[7].childNodes[1].textContent + producto.childNodes[7].childNodes[3].textContent;
-    }
-
-    carrito.appendChild(productoCarrito);
+  carrito.appendChild(productoCarrito);
 });
 
-
-
+//APARICION DEL CARRITO
+document
+  .querySelector(".navegacion__carrito")
+  .addEventListener("click", function() {
+    document.querySelector(".seccion-carrito").style.maxHeight = "200px";
+  });

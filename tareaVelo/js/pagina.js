@@ -82,3 +82,4 @@ document.querySelector(".boton").addEventListener("click", function() {
   /*cojemos el text del input y creamos una tarea con el*/
   crearTarea(this.previousElementSibling.value, "no");
 });
+
