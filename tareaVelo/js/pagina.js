@@ -105,3 +105,10 @@ function borrarTarea() {
   /*borra la tarea si seleccionamos el boton*/
   this.parentNode.remove();
 }
+
+//QUE OCURRE SI PULSAMOS EL BOTON NUEVA TAREA
+document.querySelector(".boton").addEventListener("click", function() {
+  /*cojemos el text del input y creamos una tarea con el*/
+  crearTarea(this.previousElementSibling.value, "no");
+});
+
