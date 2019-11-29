@@ -7,26 +7,180 @@
     <title>Document</title>
     <style>
       .flecha {
-        color: white;
-        background: black;
+        border-radius: 5px;
+        /*alineamos texto*/
+        text-align: center;
+        /*tamaño*/
         width: 100px;
         height: 100px;
         position: relative;
+        /*que se colocen uno al lado de la otra*/
+        float: left;
+        margin-right: 30px;
       }
       .flecha::after {
         content: "";
+        /*posicion respecto al relativo de la caja*/
         position: absolute;
         right: -20px;
-        top: 35px;
-        border-left: 10px solid green;
-        border-bottom: 10px solid transparent;
-        border-top: 10px solid transparent;
+        top: 30px;
+        /*CUADRADO sin traingulo*/
+        border-left: 20px solid transparent;
+        border-bottom: 20px solid green;
+        border-top: 20px solid green;
+        border-right: 20px solid green;
+        /*efecto giro*/
+        transform: rotateX(0deg);
+        backface-visibility: hidden;
+        transition: transform 0.6s;
+      }
+      .flecha::before {
+        content: "";
+        /*posicion respecto al relativo de la caja*/
+        position: absolute;
+        right: -40px;
+        top: 30px;
+        /*TRIANGULO*/
+        border-left: 20px solid green;
+        border-bottom: 20px solid transparent;
+        border-top: 20px solid transparent;
+        /*efecto giro*/
+        transform: rotateX(0deg);
+        backface-visibility: hidden;
+        transition: transform 0.6s;
+        /*para poner la flecha encima de la caja contigua*/
+        z-index: 1;
+      }
+
+      /*cuando pasamor por encima de la caja giramos el frontal*/
+      .flecha:hover > .frontal,
+      .flecha:hover::after,
+      .flecha:hover::before {
+        /*va desde la posicion normal hasta desaparecer*/
+        transform: rotateX(180deg);
+      }
+      /*y giramos el trasero*/
+      .flecha:hover > .trasero {
+        /*va desde desaparcer de canto a ponerse*/
+        transform: rotateX(360deg);
+      }
+
+      /*PARTE DE ALANTE Y ATRAS*/
+      .frontal {
+        /*que se ponga por delante*/
+        position: absolute;
+        top: 0;
+        transform: rotateX(0deg);
+        /*no vemos la parte trasera*/
+        backface-visibility: hidden;
+        /*que cubra todo el contendor*/
+        width: 100%;
+        height: 100%;
+        background-color: wheat;
+        /*animacion de dar la vuelta*/
+        transition: transform 0.6s;
+      }
+      .trasero {
+        /*que se ponga por detras*/
+        position: absolute;
+        top: 0;
+        transform: rotateX(90deg);
+        /*no vemos la parte trasera*/
+        backface-visibility: hidden;
+        /*que cubra todo el contendor*/
+        width: 100%;
+        height: 100%;
+        background-color: teal;
+        /*animacion de dar la vuelta*/
+        transition: transform 0.6s;
+      }
+
+      .galeria {
+        width: 100%;
+        height: 300px;
+        background: grey;
+        position: relative;
+        top: 140px;
+      }
+      .primero {
+        position: absolute;
+        left: 30px;
+        top: calc(50% - 100px);
+        width: 200px;
+        height: 200px;
+        background: hotpink;
+        /*muevo hacia la derecha*/
+        transform: perspective(300px) rotateY(30deg);
+        transition: transform 1s;
+        /*que se ponga encima de los demas*/
+        z-index: 1;
+      }
+      .primero:hover {
+        transform: perspective(200px) translateX(341px) rotateX(0deg);
+      }
+      .segundo {
+        position: absolute;
+        right: 30px;
+        top: calc(50% - 100px);
+        width: 200px;
+        height: 200px;
+        background: yellow;
+        /*muevo hacia la izq*/
+        transform: perspective(300px) rotateY(-30deg);
+        transition: transform 1s;
+        /*que se ponga encima de los demas*/
+        z-index: 1;
+      }
+      .segundo:hover {
+        transform: perspective(200px) translateX(-341px) rotateX(0deg);
+      }
+
+      .tercero {
+        position: absolute;
+        right: calc(50% - 100px);
+        top: calc(50% - 100px);
+        width: 200px;
+        height: 200px;
+        background: green;
+        /*hacemos que se agrande*/
+        transition: transform 1s;
+      }
+      .tercero:hover {
+        /*hacemos que se agrande*/
+        transform: perspective(300px) scale(1.3);
+        transition: transform 1s;
       }
     </style>
   </head>
   <body>
     <div class="flecha">
-      Texto
+      <div class="frontal">HOLA</div>
+      <div class="trasero">ADIOS</div>
+    </div>
+    <div class="flecha">
+      <div class="frontal">HOLA</div>
+      <div class="trasero">ADIOS</div>
+    </div>
+    <div class="flecha">
+      <div class="frontal">HOLA</div>
+      <div class="trasero">ADIOS</div>
+    </div>
+    <div class="flecha">
+      <div class="frontal">HOLA</div>
+      <div class="trasero">ADIOS</div>
+    </div>
+    <div class="flecha">
+      <div class="frontal">HOLA</div>
+      <div class="trasero">ADIOS</div>
+    </div>
+    <div class="flecha">
+      <div class="frontal">HOLA</div>
+      <div class="trasero">ADIOS</div>
+    </div>
+    <div class="galeria">
+      <div class="primero"></div>
+      <div class="segundo"></div>
+      <div class="tercero"></div>
     </div>
   </body>
 </html>
