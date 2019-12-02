@@ -94,62 +94,6 @@
         /*animacion de dar la vuelta*/
         transition: transform 0.6s;
       }
-
-      .galeria {
-        width: 100%;
-        height: 300px;
-        background: grey;
-        position: relative;
-        top: 140px;
-      }
-      .primero {
-        position: absolute;
-        left: 30px;
-        top: calc(50% - 100px);
-        width: 200px;
-        height: 200px;
-        background: hotpink;
-        /*muevo hacia la derecha*/
-        transform: perspective(300px) rotateY(30deg);
-        transition: transform 1s;
-        /*que se ponga encima de los demas*/
-        z-index: 1;
-      }
-      .primero:hover {
-        transform: perspective(200px) translateX(341px) rotateX(0deg);
-      }
-      .segundo {
-        position: absolute;
-        right: 30px;
-        top: calc(50% - 100px);
-        width: 200px;
-        height: 200px;
-        background: yellow;
-        /*muevo hacia la izq*/
-        transform: perspective(300px) rotateY(-30deg);
-        transition: transform 1s;
-        /*que se ponga encima de los demas*/
-        z-index: 1;
-      }
-      .segundo:hover {
-        transform: perspective(200px) translateX(-341px) rotateX(0deg);
-      }
-
-      .tercero {
-        position: absolute;
-        right: calc(50% - 100px);
-        top: calc(50% - 100px);
-        width: 200px;
-        height: 200px;
-        background: green;
-        /*hacemos que se agrande*/
-        transition: transform 1s;
-      }
-      .tercero:hover {
-        /*hacemos que se agrande*/
-        transform: perspective(300px) scale(1.3);
-        transition: transform 1s;
-      }
     </style>
   </head>
   <body>
@@ -176,11 +120,6 @@
     <div class="flecha">
       <div class="frontal">HOLA</div>
       <div class="trasero">ADIOS</div>
-    </div>
-    <div class="galeria">
-      <div class="primero"></div>
-      <div class="segundo"></div>
-      <div class="tercero"></div>
     </div>
   </body>
 </html>

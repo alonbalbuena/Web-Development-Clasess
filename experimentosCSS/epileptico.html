@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100vh;
+        width: 100vw;
+
+        animation-name: epilepsia;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        overflow: hidden;
+      }
+      .espiral {
+        --tamaño: 700px;
+
+        width: var(--tamaño);
+        height: var(--tamaño);
+
+        background-size: cover;
+        background-position: center;
+        background-image: url("./imagenes/espiral.png");
+
+        animation-name: giro;
+        animation-duration: 0.8s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        position: absolute;
+        top: calc(50% - (var(--tamaño) / 2));
+        left: calc(50% - (var(--tamaño) / 2));
+      }
+
+      .hipnosapo {
+        --tamaño: 400px;
+
+        width: var(--tamaño);
+        height: var(--tamaño);
+
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url("./imagenes/hipnosapo.gif");
+
+        position: absolute;
+        top: calc(50% - (var(--tamaño) / 2));
+        left: calc(50% - (var(--tamaño) / 2));
+      }
+      @keyframes giro {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(-360deg);
+        }
+      }
+
+      @keyframes epilepsia {
+        0% {
+          background-color: red;
+        }
+        50% {
+          background-color: blue;
+        }
+        100% {
+          background-color: red;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="espiral"></div>
+    <div class="hipnosapo"></div>
+  </body>
+</html>
