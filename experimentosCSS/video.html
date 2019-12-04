@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .video {
+        position: relative;
+        border: red solid 5px;
+        box-sizing: border-box;
+
+        background-color: coral;
+
+        width: 500px;
+        height: 500px;
+      }
+      .video__boton {
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+
+        /*posicionamos*/
+        position: absolute;
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
+        /*aunque el boton se vea encima es necesario subirlo para poder darle*/
+        z-index: 1;
+
+        width: 100px;
+        height: 100px;
+        background-color: black;
+
+        /*el boton no aparece por defecto*/
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+      .video__boton::after {
+        content: "";
+        /*posicionamos*/
+        position: absolute;
+        top: 20px;
+        left: 25px;
+        /*creamos el boton de pausa*/
+        border-top: 30px solid transparent;
+        border-right: 40px solid white;
+        border-bottom: 30px solid transparent;
+      }
+
+      .video__boton--paused {
+      }
+
+      /*QUE OCURRE AL PASAR EL RATON POR EL VIDEO*/
+      .video:hover > .video__boton {
+        opacity: 1;
+      }
+
+      .video:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      video {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="video">
+      <div class="video__boton"></div>
+      <video>
+        <source src="./videos/small.mp4" type="video/mp4" />
+        <source src="./videos/small.ogv" type="video/ogv" />
+        <source src="./videos/small.flv" type="video/flv" />
+        <source src="./videos/small.webm" type="video/webm" />
+        <source src="./videos/small.3gp" type="video/3gp" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </body>
+  <script>
+    document
+      .querySelector(".video__boton")
+      .addEventListener("click", function() {
+        if (this.nextElementSibling.paused) {
+          this.nextElementSibling.play();
+        } else {
+          this.nextElementSibling.pause();
+        }
+      });
+  </script>
+</html>
