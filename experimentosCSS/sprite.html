@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      :root {
+        --factor-animacion: 120px;
+        --posicion: -57px;
+      }
+      .sprite {
+        border: 1px solid black;
+        height: 100px;
+        width: 100px;
+        background-position-x: -57px;
+        background-position-y: 125px;
+        background-image: url("./images/sprite.png");
+        /*animacion de cambio en la posicion del fondo*/
+        animation-name: salto;
+        animation-duration: 0.7s;
+        animation-timing-function: step-end; /*que vaya a tronpicones no EASE*/
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes movimiento {
+        15% {
+          background-position-x: -57px;
+        }
+        30% {
+          background-position-x: calc(-57px - 120px);
+        }
+        45% {
+          background-position-x: calc((-57px - 120px) - 120px);
+        }
+        60% {
+          background-position-x: calc(((-57px - 120px) - 120px) - 120px);
+        }
+        75% {
+          background-position-x: calc(
+            (((-57px - 120px) - 120px) - 120px) - 120px
+          );
+        }
+        90% {
+          background-position-x: calc(
+            ((((-57px - 120px) - 120px) - 120px) - 120px) - 120px
+          );
+        }
+        100% {
+          background-position-x: calc(
+            (((-57px - 120px) - 120px) - 120px) - 120px
+          );
+        }
+      }
+
+      @keyframes salto {
+        0% {
+          background-position-x: -423px;
+          background-position-y: 150px;
+        }
+        50% {
+          background-position-x: -543px;
+          /*pequeño salto*/
+          background-position-y: 145px;
+        }
+        100% {
+          background-position-x: -423px;
+          background-position-y: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sprite"></div>
+  </body>
+</html>
