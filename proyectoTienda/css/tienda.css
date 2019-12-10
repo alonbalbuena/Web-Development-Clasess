@@ -59,7 +59,7 @@ body {
 
   /*efecto de despliege del menu*/
   max-height: 0;
-  overflow: hidden;
+  overflow-y: scroll;
   transition: max-height 0.5s ease-in-out;
 }
 
@@ -91,6 +91,21 @@ body {
     50% - 60px
   ); /*cambiamos el ancho de los productos al cambiar el grid*/
   height: 800px; /*800px es la media de altura de las fotos*/
+}
+
+/*PRODUCTOS DE LA CESTA*/
+.producto-carrito {
+  /*que los productos sean filas*/
+  display: flex;
+}
+.producto-carrito__imagen {
+  width: 80px;
+  height: auto;
+
+  object-fit: cover;
+}
+.producto-carrito__descripcion {
+  align-self: center;
 }
 
 /*BLOQUE DE CADA PRODUCTO*/
