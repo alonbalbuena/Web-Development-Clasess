@@ -2,16 +2,19 @@ body {
   /*reiniciamos estilos*/
   margin: 0;
   padding: 0;
+
+  /*que no se vea el scroll ni los elementos extras apte de esta pagina*/
+  overflow-y: hidden;
 }
 
+/*SECCION VIDEO PRINCIPAL*/
 .video {
-  border: 3px solid yellow;
   /*que ocupe toda la pantalla y se adapte el tamaño del video*/
   height: 100vh;
   /*para poder posicionar los elementos dentro de .video*/
   position: relative;
 
-  background-color: grey;
+  background-color: lightslategrey;
 }
 .video__boton {
   cursor: pointer;
@@ -25,24 +28,35 @@ body {
   /*aunque el boton se vea encima es necesario subirlo para poder darle*/
   z-index: 1;
 
+  /*tamaño boton*/
   width: 100px;
   height: 100px;
-  background-color: black;
+
+  background-color: darkslategrey;
+  box-shadow: 2px 2px black;
 
   /*el boton no aparece por defecto*/
   opacity: 0;
   transition: opacity 0.5s;
+}
+.video__boton:active {
+  transform: translateY(-5px);
 }
 .video__boton::after {
   content: "";
   /*posicionamos*/
   position: absolute;
   top: 20px;
-  left: 25px;
+  left: 30px;
   /*creamos el boton de pausa*/
   border-top: 30px solid transparent;
-  border-right: 40px solid white;
+  border-left: 40px solid white;
   border-bottom: 30px solid transparent;
+}
+/*desplazamos el boton de reproduccion*/
+.video__boton--mover {
+  top: 80%;
+  left: 15px;
 }
 .video__contenido {
   width: 100%;
@@ -52,15 +66,45 @@ body {
   position: absolute;
   bottom: 15px;
   /*colocamos la barra de progreso encima del video*/
-  height: 8px;
+  height: 9px;
   width: 100%;
   /*propiedad para cambair el ancho en funcion del video*/
-  max-width: 3px;
+  max-width: 1px;
   /*estilos barra*/
-  background-color: red;
+  background-color: darkslategrey;
   box-shadow: 1px 1px 2px black;
   /*que el cambio en el max-width hecho con JS sea fluido*/
   transition: max-width 0.4s linear;
+}
+.video__galeria {
+  cursor: pointer;
+  /*posicionamos el boton*/
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+
+  /*creamos el fondo para el triangulo*/
+  width: 40px;
+  height: 40px;
+
+  /*estilo fondo*/
+  background-color: darkslategrey;
+  border-radius: 20px;
+
+  /*rotaremos el boton mediante js*/
+  transform: rotate(0deg);
+  transition: transform 1s;
+}
+.video__galeria::after {
+  content: "";
+  /*posicionamos centro del circulo*/
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  /*creamos el triangulo dentro del fondo*/
+  border-right: solid 15px transparent;
+  border-top: solid 15px white;
+  border-left: solid 15px transparent;
 }
 
 /*QUE OCURRE AL PASAR EL RATON POR EL VIDEO*/
@@ -73,16 +117,22 @@ body {
 
 /*SECCION DE LA GALERIA*/
 .galeria {
-  background-color: wheat;
-  border: 3px solid black;
+  position: absolute;
+  bottom: -100vh;
+  transition: bottom 1s;
+  z-index: 2;
+  /*posicionamos la galeria debajo del video principal y que aparezca con un boton*/
+  background-color: rgba(37, 60, 70, 0.65);
+  /*que el borde se cuente dentro del tamaño de la caja*/
+  box-sizing: border-box;
   /*alineamos la galeria*/
-  margin-left: 10%;
-  margin-right: 10%;
-  width: 80%;
-  /*que la galeria ocupe toda la pagina*/
-  display: table;
-}
+  width: 360px;
+  height: 100vh;
 
+  /*que podamos hacer scroll entre los videos*/
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .video-galeria {
   cursor: pointer;
   /*para poder ponder la descricpion del video en una fila*/
@@ -91,27 +141,37 @@ body {
 .video-galeria:hover {
   background-color: grey;
 }
-
 .video-galeria__video {
+  /*borde para separar los videos*/
+  border-top: solid 4px black;
   /*que todos los videos se adapten al tamaño aunque tengan relaciones de aspecto distintas*/
   height: 100px;
   width: 200px;
   object-fit: cover;
-  /*regulamos el tamaño del video*/
-  background-color: grey;
   /*para poner cada elemento del video en una columna*/
   display: table-cell;
-}
 
+  /*dejamos espacion entre los videos*/
+  padding: 15px;
+}
 .video-galeria__descripcion {
+  /*borde para separar los videos*/
+  /*con el table-row no te permite hacerlo, solo se puede hacer a nivel de celda*/
+  border-top: solid 4px black;
+
   font-family: Arial, Helvetica, sans-serif;
+  color: white;
   /*alineamos los textos*/
   vertical-align: middle;
   /*para poner cada elemento del video en una columna*/
   display: table-cell;
+
+  /*dejamos espacion entre los videos*/
+  padding: 15px;
 }
 .video-galeria__descripcion > p,
 h1 {
   /*quitamos los margenes por defecto*/
   margin: 0;
+  padding: 0;
 }
