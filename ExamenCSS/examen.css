@@ -1,0 +1,279 @@
+body {
+  /*reiniciamos estilos quitando margenes*/
+  margin: 0;
+  padding: 0;
+
+  width: 800px;
+
+  /*alineamos horizontalmente*/
+  position: relative;
+  left: calc(50% - (800px / 2));
+  right: calc(50% - (800px / 2));
+
+  /*estilos*/
+  background-color: #f6f6f6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+li {
+  /*reiniciamos estilos*/
+  list-style-type: none;
+}
+
+.wrapper > header {
+  /*tamaño del contenedor que contendra la foto*/
+  width: 800px;
+  height: 300px;
+
+  /*imagen*/
+  background-image: url("./images/arco-iris.jpg");
+
+  /*que la posicion de los hijos sea respecto a el header*/
+  position: relative;
+}
+.wrapper > header::before {
+  content: "";
+
+  /*posicionamos debajo de la imagen*/
+  position: absolute;
+  bottom: -60px;
+
+  /*creamos la caja por debajo de la imagen*/
+  width: 800px;
+  border-top: solid 10px #6d0313;
+  border-bottom: solid 50px #515151;
+
+  /*el tamaño de la caja incluye el borde*/
+  height: 60px;
+  box-sizing: border-box;
+}
+.wrapper > header::after {
+  content: "";
+
+  /*posicionamos debajo de la imagen*/
+  position: absolute;
+  bottom: -60px;
+  left: calc(50% - (120px / 2));
+
+  /*creamos el triangulo*/
+  border-top: solid white 60px;
+  border-left: solid transparent 60px;
+  border-right: solid transparent 60px;
+}
+.wrapper > header:hover {
+  filter: blur(5px);
+}
+
+/*MENU DE NAVEGACION*/
+.wrapper > nav {
+  /*alineamos los hijos*/
+  display: table;
+  /*no queremos que en funcion del contenido de la tabla se adapte el tamaño*/
+  table-layout: fixed;
+
+  /*tamaño*/
+  width: 800px;
+  height: 50px;
+
+  /*posicionamos debajo JUSTO del header*/
+  position: absolute;
+  top: 360px;
+
+  /*estilo fuente*/
+  background-color: white;
+  font-size: 1.2em;
+}
+
+.wrapper > nav > ul {
+  /*cada ul tendra todos sus hijos uno a continuacion del otro como si se tratase de una fila de una tabla*/
+  display: table-row;
+}
+
+.wrapper > nav > ul > li {
+  /*al ser celdas de una tabla se distribuyen el espacio de la fila*/
+  display: table-cell;
+
+  /*no hace falta alinearlas horizontalmente pero si verticalmente*/
+  vertical-align: middle;
+}
+
+.wrapper > nav > ul > li > a {
+  /*para que el hiperenlace ocupe todo el tamaño del contenedor*/
+  display: block;
+
+  text-align: center;
+
+  /*para poder posicionar el triangulo respecto a este link*/
+  position: relative;
+
+  /*que aparezca el puntero*/
+  cursor: pointer;
+}
+
+/*ESTILOS DEL HIPERENLACE*/
+.wrapper > nav > ul > li > a:link {
+  /*cuando el link no ha sido visitado todavia*/
+  color: black;
+  text-decoration: none;
+}
+.wrapper > nav > ul > li > a:visited {
+  color: tomato;
+}
+/*QUE OCURRE AL PASAR EL RATON POR ENCIMA*/
+.wrapper > nav > ul > li > a:hover::before,
+a:focus::before {
+  content: "";
+
+  /*lo colocamos a la izquierda del contenedor con respecto a la poscion del hiperenlace*/
+  position: absolute;
+  left: 0;
+  top: -12px;
+
+  /*creamos el triangulo*/
+  border-left: solid 25px #ea4335;
+  border-top: solid 25px transparent;
+  border-bottom: solid 25px transparent;
+}
+.wrapper > nav > ul > li > a:active {
+  color: red;
+}
+
+/*SECCION DEL CONTENIDO*/
+section {
+  /*tamaño de la seccion*/
+  width: 800px;
+  height: 150px;
+}
+
+section > ul {
+  /*reiniciamos estilos*/
+  margin: 0;
+  padding: 0;
+
+  /*que ocupe todo el espacio de la seccion*/
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+}
+
+section > ul > li {
+  /*creamos las cajas por defecto para no repetir propiedades*/
+  height: 100%;
+  width: 150px;
+
+  /*estilo del texto*/
+  text-align: center;
+  font-size: 1.3em;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  position: absolute;
+
+  /*para alinear el texto*/
+  padding-top: 50px;
+  box-sizing: border-box; /*para que el paddin se incluya dentro del height*/
+
+  /*el efecto de giro en hover que se haga suavemente*/
+  transition: transform 2s;
+}
+
+/*alineamos cada caja y ponemos respectivos colores*/
+section > ul > li:nth-child(1) {
+  background-color: #ea4335;
+  left: 0;
+}
+section > ul > li:nth-child(2) {
+  background-color: #127bb6;
+  right: calc(50% - (150px / 2));
+}
+section > ul > li:nth-child(3) {
+  background-color: #366e85;
+  right: 0px;
+}
+
+/*CREAMOS LAS FLECHAS NECESARIAS (al 1 y 2)*/
+section > ul > li:nth-child(1)::after,
+section > ul > li:nth-child(2)::after {
+  content: "";
+
+  /*alineamos al centro*/
+  position: absolute;
+  right: -110px;
+  top: calc(50% - (50px / 2));
+
+  /*CREAMOS LA CAJA DE LA FLECHA*/
+  width: 100px;
+  height: 50px;
+
+  background-color: #6d0313;
+}
+section > ul > li:nth-child(1)::before,
+section > ul > li:nth-child(2)::before {
+  content: "";
+
+  /*alineamos al centro*/
+  position: absolute;
+  right: -160px;
+  top: calc(50% - (100px / 2)); /*el ancho de la flecha es el doble del borde*/
+
+  /*CREAMOS LA PUNTA DE LA FLECHA*/
+  border-left: solid 50px #6d0313;
+  border-top: solid 50px transparent;
+  border-bottom: solid 50px transparent;
+}
+
+/*QUE OCURRE AL PASAR EL RATON POR ENCIMA DE LA TARJETA*/
+.carta {
+  /*contenedor para el diagrama*/
+
+  /*posicionamos debajo del menu de navegacion*/
+  position: relative;
+  top: 150px;
+
+  width: 800px;
+  height: 150px;
+
+  cursor: pointer;
+}
+.front {
+  position: absolute;
+
+  /*que ocupe toda la carta*/
+  width: 800px;
+  height: 150px;
+
+  /*empieza de cara*/
+  transform: perspective(500px) rotateX(0deg);
+  backface-visibility: hidden;
+  transition: transform 1s;
+}
+.carta:hover > .front {
+  transform: perspective(500px) rotateX(180deg);
+}
+.back {
+  position: absolute;
+
+  /*que ocupe toda la carta*/
+  width: 800px;
+  height: 150px;
+
+  /*empieza de espaldas*/
+  transform: perspective(500px) rotateX(90deg);
+  backface-visibility: hidden;
+  transition: transform 1s;
+
+  background-color: royalblue;
+
+  /*DAMOS ESTILO AL TEXTO*/
+  text-align: center;
+  color: white;
+  font-family: Arial;
+  font-size: 2em;
+  text-shadow: 1px 2px black;
+
+  line-height: 150px;
+}
+.carta:hover > .back {
+  transform: perspective(500px) rotateX(360deg);
+}
