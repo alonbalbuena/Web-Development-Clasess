@@ -39,13 +39,28 @@ body {
 }
 
 /*SECCIONES DE LA WEB*/
-.seccion {
-  border-bottom: 1px solid black;
 
-  /*reordenamos los bloques de cada seccion*/
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+main {
+  height: 100%;
+}
+
+.seccion {
+  /*tamaño seccion prductos*/
+  width: 80%;
+  height: 1000px;
+  /*posicionamos*/
+  position: relative;
+  left: calc(50% - (80% / 2));
+
+  background-color: red;
 }
 /*CARRITO*/
 .seccion-carrito {
@@ -55,7 +70,7 @@ body {
   top: 50px;
   right: 0;
 
-  width: 200px;
+  width: 300px;
 
   /*efecto de despliege del menu*/
   max-height: 0;
@@ -75,22 +90,14 @@ body {
   display: block;
 }
 .seccion__productos {
+  /*posicionamos al centro*/
+  position: absolute;
+  left: calc(50% - (80% / 2));
+
   /*hacemos que los productos se redistribuyan en funcion del ancho de pantalla*/
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-
-  /*limitamos a 4 productos como maximo por columna*/
-  max-width: 840px;
-}
-.seccion__productos--grid-2 {
-}
-.seccion__productos--grid-2 > .producto {
-  width: calc(
-    50% - 60px
-  ); /*cambiamos el ancho de los productos al cambiar el grid*/
-  height: 800px; /*800px es la media de altura de las fotos*/
+  width: 80%;
+  flex-flow: row wrap;
 }
 
 /*PRODUCTOS DE LA CESTA*/
@@ -115,13 +122,12 @@ body {
 
   /*colocamos el contenido dentro de cada producto*/
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   justify-content: center;
 
   /*cada elemento dentro del producto ocupe todo el espacio*/
-  width: 200px;
+  flex: 1 0 200px;
   height: 253px;
-  margin: 5px;
 
   /*transicion al pasar el raton por encima para cambiar la foto*/
   transition: background-image 0.5s ease;
@@ -202,10 +208,4 @@ body {
 }
 .boton:hover {
   background-color: var(--naranja);
-}
-
-/*boton secundario*/
-.boton--grande {
-  height: 70px;
-  border-width: 5px;
 }
