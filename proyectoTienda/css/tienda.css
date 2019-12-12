@@ -19,8 +19,7 @@ body {
 
   /*ordenacion de los elementos de la barra*/
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 
   /*Dejamos que la barra de navegacion sea 
   siempre accesible en la parte de arriba*/
@@ -28,13 +27,8 @@ body {
   top: 0;
   z-index: 1; /*evitamos que las imagenes se superponga a la barra de nav.*/
 }
-.navegacion__logo {
-  width: 50px;
-  height: auto;
-}
 .navegacion__carrito {
   width: 50px;
-  height: auto;
   cursor: pointer;
 }
 
@@ -50,17 +44,40 @@ body {
 
 main {
   height: 100%;
+
+  /*determino 4 lineas*/
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+  grid-template-rows: 100px auto 100px;
 }
 
 .seccion {
-  /*tamaño seccion prductos*/
-  width: 80%;
-  height: 1000px;
-  /*posicionamos*/
-  position: relative;
-  left: calc(50% - (80% / 2));
+  /*determinamos que zona del grid va a cubrir*/
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
 
-  background-color: red;
+  /* tamaño seccion prductos
+  SIN GRID
+  height: 1000px;
+  width: 80%;
+
+  posicionamos
+  position: relative;
+  left: calc(50% - (80% / 2)); */
+}
+
+.seccion__titulo {
+  text-align: center;
+  font-size: 2em;
+  /*fuentes de google fonts*/
+  font-family: "Big Shoulders Text", cursive;
+}
+.seccion__productos {
+  /*hacemos que los productos se redistribuyan en funcion del ancho de pantalla*/
+  display: flex;
+  flex-flow: row wrap;
 }
 /*CARRITO*/
 .seccion-carrito {
@@ -78,26 +95,16 @@ main {
   transition: max-height 0.5s ease-in-out;
 }
 
-.seccion__titulo {
-  text-align: center;
-  font-size: 2em;
-  /*fuentes de google fonts*/
-  font-family: "Big Shoulders Text", cursive;
-}
-.seccion__reordenar {
-  width: auto;
-  height: 30px;
-  display: block;
-}
-.seccion__productos {
-  /*posicionamos al centro*/
-  position: absolute;
-  left: calc(50% - (80% / 2));
+.seccion-creditos {
+  /*determinamos que zona del grid va a cubrir*/
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
 
-  /*hacemos que los productos se redistribuyan en funcion del ancho de pantalla*/
-  display: flex;
-  width: 80%;
-  flex-flow: row wrap;
+  background-color: var(--marron);
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /*PRODUCTOS DE LA CESTA*/
