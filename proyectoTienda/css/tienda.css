@@ -19,8 +19,7 @@ body {
 
   /*ordenacion de los elementos de la barra*/
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 
   /*Dejamos que la barra de navegacion sea 
   siempre accesible en la parte de arriba*/
@@ -28,24 +27,57 @@ body {
   top: 0;
   z-index: 1; /*evitamos que las imagenes se superponga a la barra de nav.*/
 }
-.navegacion__logo {
-  width: 50px;
-  height: auto;
-}
 .navegacion__carrito {
   width: 50px;
-  height: auto;
   cursor: pointer;
 }
 
 /*SECCIONES DE LA WEB*/
-.seccion {
-  border-bottom: 1px solid black;
 
-  /*reordenamos los bloques de cada seccion*/
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+main {
+  height: 100%;
+
+  /*determino 4 lineas*/
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+  grid-template-rows: 100px auto 100px;
+}
+
+.seccion {
+  /*determinamos que zona del grid va a cubrir*/
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+  /* tamaño seccion prductos
+  SIN GRID
+  height: 1000px;
+  width: 80%;
+
+  posicionamos
+  position: relative;
+  left: calc(50% - (80% / 2)); */
+}
+
+.seccion__titulo {
+  text-align: center;
+  font-size: 2em;
+  /*fuentes de google fonts*/
+  font-family: "Big Shoulders Text", cursive;
+}
+.seccion__productos {
+  /*hacemos que los productos se redistribuyan en funcion del ancho de pantalla*/
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: row wrap;
 }
 /*CARRITO*/
 .seccion-carrito {
@@ -55,42 +87,39 @@ body {
   top: 50px;
   right: 0;
 
-  width: 200px;
+  width: 300px;
 
   /*efecto de despliege del menu*/
   max-height: 0;
-  overflow: hidden;
+  overflow-y: scroll;
   transition: max-height 0.5s ease-in-out;
 }
 
-.seccion__titulo {
-  text-align: center;
-  font-size: 2em;
-  /*fuentes de google fonts*/
-  font-family: "Big Shoulders Text", cursive;
-}
-.seccion__reordenar {
-  width: auto;
-  height: 30px;
-  display: block;
-}
-.seccion__productos {
-  /*hacemos que los productos se redistribuyan en funcion del ancho de pantalla*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+.seccion-creditos {
+  /*determinamos que zona del grid va a cubrir*/
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
 
-  /*limitamos a 4 productos como maximo por columna*/
-  max-width: 840px;
+  background-color: var(--marron);
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-.seccion__productos--grid-2 {
+
+/*PRODUCTOS DE LA CESTA*/
+.producto-carrito {
+  /*que los productos sean filas*/
+  display: flex;
 }
-.seccion__productos--grid-2 > .producto {
-  width: calc(
-    50% - 60px
-  ); /*cambiamos el ancho de los productos al cambiar el grid*/
-  height: 800px; /*800px es la media de altura de las fotos*/
+.producto-carrito__imagen {
+  width: 80px;
+  height: auto;
+
+  object-fit: cover;
+}
+.producto-carrito__descripcion {
+  align-self: center;
 }
 
 /*BLOQUE DE CADA PRODUCTO*/
@@ -100,13 +129,12 @@ body {
 
   /*colocamos el contenido dentro de cada producto*/
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   justify-content: center;
 
   /*cada elemento dentro del producto ocupe todo el espacio*/
-  width: 200px;
+  flex: 1 0 200px;
   height: 253px;
-  margin: 5px;
 
   /*transicion al pasar el raton por encima para cambiar la foto*/
   transition: background-image 0.5s ease;
@@ -187,10 +215,4 @@ body {
 }
 .boton:hover {
   background-color: var(--naranja);
-}
-
-/*boton secundario*/
-.boton--grande {
-  height: 70px;
-  border-width: 5px;
 }
