@@ -19,7 +19,7 @@ body {
 
   /*ordenacion de los elementos de la barra*/
   display: flex;
-  align-items: flex-end;
+  justify-content: flex-end;
 
   /*Dejamos que la barra de navegacion sea 
   siempre accesible en la parte de arriba*/
