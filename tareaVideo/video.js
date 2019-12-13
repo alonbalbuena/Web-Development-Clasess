@@ -1,11 +1,19 @@
 /*boton de play y pause*/
 document.querySelector(".video__boton").addEventListener("click", function() {
+  const video = this.nextElementSibling;
+  /*al dar click en el boton si el video ya se esta reproduciendo lo pausamos*/
   if (this.nextElementSibling.paused) {
-    this.style.backgroundColor = "blue";
-    this.nextElementSibling.play();
+    this.style.backgroundColor = "red";
+    video.play();
+    /*movemos el boton de video y quitamos el filtro para poder ver*/
+    this.classList.add("video__boton--mover");
+    video.style.filter = "none";
   } else {
-    this.style.backgroundColor = "black";
-    this.nextElementSibling.pause();
+    /*reiniciamos estilos*/
+    this.style.backgroundColor = "darkslategrey";
+    video.pause();
+    this.className = "video__boton";
+    video.style.filter = "blur(5px)";
   }
 });
 
@@ -39,3 +47,18 @@ document.querySelectorAll(".video-galeria").forEach(video =>
     document.querySelector(".video__contenido").load();
   })
 );
+
+/*despliegue de la galeria*/
+document.querySelector(".video__galeria").addEventListener("click", function() {
+  let bottom = document.querySelector(".galeria");
+
+  if (bottom.style.bottom == "0px") {
+    /*volvemos a la posicion inicial*/
+    bottom.style.bottom = "-100vh";
+    this.style.transform = "rotate(0deg)";
+  } else {
+    bottom.style.bottom = "0px";
+    /*giramos el boton*/
+    this.style.transform = "rotate(180deg)";
+  }
+});
