@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="esES">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tienda Alonso</title>
+    <!--Pagina de estilos-->
+    <link rel="stylesheet" href="./css/tienda.css" />
+    <!--fuentes-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Big+Shoulders+Text&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Caveat&display=swap"
+      rel="stylesheet"
+    />
+    <!--favicon-->
+    <link
+      rel="shortcut icon"
+      href="imagenes/favicon.png"
+      typze="image/x-icon"
+    />
+  </head>
+
+  <body>
+    <!--WEB COMPONENTS-->
+    <script src="./js/componentes.js"></script>
+    <header class="navegacion">
+      <img
+        class="navegacion__carrito"
+        src="./imagenes/cesta.png"
+        alt="carrito"
+      />
+    </header>
+    <main>
+      <section class="seccion">
+        <h1 class="seccion__titulo">Productos</h1>
+
+        <div class="seccion__productos">
+          <producto-nuevo></producto-nuevo>
+          <producto-nuevo></producto-nuevo>
+          <producto-nuevo></producto-nuevo>
+          <producto-nuevo></producto-nuevo>
+          <producto-nuevo></producto-nuevo>
+          <producto-nuevo></producto-nuevo>
+          <producto-nuevo></producto-nuevo>
+          </div>
+        </div>
+      </section>
+      <section class="seccion-creditos">
+        <h1>Creado por alonso</h1>
+      </section>
+    </main>
+
+    <section class="seccion-carrito">
+      <h1 class="seccion-carrito__titulo">Carrito</h1>
+      <div class="seccion-carrito__productos"></div>
+    </section>
+  </body>
+  <!--Script-->
+  <script src="./js/tienda.js"></script>
+</html>

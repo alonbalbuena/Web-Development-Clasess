@@ -1,0 +1,13 @@
+[
+    {
+        src-front:"../imagenes/camiseta.jpg",
+        src-back:"../imagenes/camiseta2.jpg",
+        nombre:"camiseta",
+        precio:"15€"
+    },{
+        src-front:"../imagenes/leopardo1.jpg",
+        src-back:"../imagenes/leopardo2.jpg",
+        nombre:"camiseta",
+        precio:"15€"
+    }
+]
