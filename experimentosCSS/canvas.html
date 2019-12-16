@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" style="border:1px solid #000000;"></canvas>
+  </body>
+  <script>
+    var puntos = [
+      { x: 5, y: 4 },
+      { x: 10, y: 15 },
+      { x: 15, y: 25 },
+      { x: 20, y: 0 },
+      { x: 25, y: 10 },
+      { x: 30, y: 0 },
+      { x: 35, y: 10 },
+      { x: 40, y: 10 },
+      { x: 45, y: 10 },
+      { x: 50, y: 10 },
+      { x: 55, y: 10 },
+      { x: 60, y: 10 },
+      { x: 65, y: 10 },
+      { x: 70, y: 10 },
+      { x: 75, y: 10 },
+      { x: 80, y: 10 },
+      { x: 85, y: 10 },
+      { x: 90, y: 10 },
+      { x: 100, y: 10 },
+      { x: 105, y: 10 },
+      { x: 110, y: 10 },
+      { x: 115, y: 10 },
+      { x: 120, y: 10 },
+      { x: 125, y: 10 },
+      { x: 130, y: 10 },
+      { x: 135, y: 10 },
+      { x: 140, y: 10 }
+    ];
+
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.beginPath();
+
+    var puntoAnterior = { x: 0, y: 0 }; //origen
+    for (let punto of puntos) {
+      ctx.moveTo(puntoAnterior.x, puntoAnterior.y);
+      ctx.lineTo(punto.x, punto.y);
+      ctx.stroke();
+      //sobreescribimos el punto anterior para la siguiente linea
+      puntoAnterior = punto;
+    }
+  </script>
+</html>
