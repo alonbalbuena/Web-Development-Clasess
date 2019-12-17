@@ -4,11 +4,19 @@
     <meta charset="UTF-8" />
     <title>Document</title>
   </head>
+  <style>
+    canvas {
+      border: 1px solid black;
+      transform: rotate(180deg);
+    }
+  </style>
   <body>
-    <script>
-      loadText();
+    <canvas height="900" width="1300" id="canvas"></canvas>
 
-      function loadText() {
+    <script>
+      load();
+
+      function load() {
         var xhr = new XMLHttpRequest();
         xhr.open(
           "GET",
@@ -17,10 +25,67 @@
         );
 
         xhr.onload = function() {
-          const json = JSON.parse(this.responseText);
-          console.log(json.);
+          if (this.status == 200) {
+            const json = JSON.parse(this.responseText);
+
+            //pintamos puntos
+            json.poblaciones.poblacion.forEach(punto => pintarPunto(punto));
+          }
         };
         xhr.send();
+      }
+
+      var puntoAnterior = { varon: 0 };
+      var separacion = 90;
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      //pinto línea eje Y
+      ctx.beginPath();
+      ctx.moveTo(80, 160);
+      ctx.lineTo(80, 890);
+      ctx.stroke();
+      ctx.closePath();
+
+      //pinto línea eje X
+      ctx.beginPath();
+      ctx.moveTo(80, 160);
+      ctx.lineTo(1180, 160);
+      ctx.stroke();
+      ctx.closePath();
+
+      function pintarPunto(punto) {
+        //hombres
+        ctx.beginPath();
+        ctx.arc(separacion, 180 + punto.varon / 35, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue";
+        ctx.fill();
+        ctx.closePath();
+
+        //mujeres
+        ctx.beginPath();
+        ctx.arc(separacion, 180 + punto.mujer / 35, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.closePath();
+
+        //nombres
+        ctx.beginPath();
+        ctx.save();
+
+        ctx.translate(separacion, 150);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "left";
+        ctx.fillStyle = "black";
+        ctx.font = "13px Comic Sans MS";
+        ctx.fillText(punto.barrio, 0, 15 / 2);
+
+        ctx.restore();
+        ctx.closePath();
+
+        ctx.puntoAnterior = punto;
+        separacion += 24;
       }
     </script>
   </body>
