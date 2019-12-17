@@ -25,15 +25,18 @@
   </head>
 
   <body>
-    <!--WEB COMPONENTS-->
-    <script src="./js/componentes.js"></script>
     <header class="navegacion">
       <img
         class="navegacion__carrito"
         src="./imagenes/cesta.png"
         alt="carrito"
       />
+      <p class="contador-productos"></p>
     </header>
+    <section class="seccion-carrito">
+      <h1 class="seccion-carrito__titulo">Carrito</h1>
+      <div class="seccion-carrito__productos"></div>
+    </section>
     <main>
       <section class="seccion">
         <h1 class="seccion__titulo">Productos</h1>
@@ -159,17 +162,27 @@
               <p class="producto__info-precio">11€</p>
             </div>
           </div>
+          <div class="producto">
+            <img
+              class="producto__imagen producto__imagen--rotada1"
+              src="./imagenes/corazon1.jpg"
+            />
+            <img
+              class="producto__imagen producto__imagen--rotada2"
+              src="./imagenes/corazon2.jpg"
+            />
+            <button class="boton">añadir</button>
+            <div class="producto__info">
+              <h1 class="producto__info-nombre">Producto 8</h1>
+              <p class="producto__info-precio">11€</p>
+            </div>
+          </div>
         </div>
       </section>
       <section class="seccion-creditos">
         <h1>Creado por alonso</h1>
       </section>
     </main>
-
-    <section class="seccion-carrito">
-      <h1 class="seccion-carrito__titulo">Carrito</h1>
-      <div class="seccion-carrito__productos"></div>
-    </section>
   </body>
   <!--Script-->
   <script src="./js/tienda.js"></script>

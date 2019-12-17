@@ -16,6 +16,7 @@ body {
 .navegacion {
   background-color: var(--rojo);
   height: 50px;
+  width: 100%;
 
   /*ordenacion de los elementos de la barra*/
   display: flex;
@@ -23,13 +24,28 @@ body {
 
   /*Dejamos que la barra de navegacion sea 
   siempre accesible en la parte de arriba*/
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 1; /*evitamos que las imagenes se superponga a la barra de nav.*/
 }
 .navegacion__carrito {
   width: 50px;
   cursor: pointer;
+}
+.contador-productos {
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  line-height: 15px;
+  font-weight: bold;
+  background-color: var(--blanco);
+  border-radius: 7px;
+  font-family: Arial;
+  font-size: 0.6em;
+
+  position: absolute;
+  right: 7px;
+  top: 3px;
 }
 
 /*SECCIONES DE LA WEB*/
@@ -53,19 +69,8 @@ main {
 
 .seccion {
   /*determinamos que zona del grid va a cubrir*/
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-
-  /* tamaño seccion prductos
-  SIN GRID
-  height: 1000px;
-  width: 80%;
-
-  posicionamos
-  position: relative;
-  left: calc(50% - (80% / 2)); */
+  grid-column: 2/3;
+  grid-row: 2;
 }
 
 .seccion__titulo {
@@ -82,10 +87,17 @@ main {
 /*CARRITO*/
 .seccion-carrito {
   background-color: var(--marron);
+  border-left: 6px solid black;
+  border-bottom: 6px solid black;
+  border-right: 6px solid black;
+  border-radius: 0px 0px 5px 5px;
+  box-sizing: border-box;
+
   /*colocamos el carrito justo debajo de la barra de nav*/
-  position: absolute;
+  position: fixed;
   top: 50px;
   right: 0;
+  z-index: 1;
 
   width: 300px;
 
@@ -95,31 +107,56 @@ main {
   transition: max-height 0.5s ease-in-out;
 }
 
+/*CUSTOM SCROLLBAR*/
+.seccion-carrito::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--blanco);
+}
+
+.seccion-carrito::-webkit-scrollbar-thumb {
+  background-color: black;
+  border: 1px solid var(--blanco);
+}
+
+.seccion-carrito__titulo {
+  font-family: "Big Shoulders Text", cursive;
+  text-align: center;
+}
+
 .seccion-creditos {
   /*determinamos que zona del grid va a cubrir*/
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-column: 1/4;
+  grid-row: 3;
 
   background-color: var(--marron);
   text-align: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Big Shoulders Text", cursive;
 }
 
 /*PRODUCTOS DE LA CESTA*/
 .producto-carrito {
+  height: 80px;
+
   /*que los productos sean filas*/
   display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .producto-carrito__imagen {
-  width: 80px;
-  height: auto;
+  width: auto;
+  height: 50px;
 
   object-fit: cover;
 }
 .producto-carrito__descripcion {
-  align-self: center;
+  font-family: Arial;
+}
+
+.producto-carrito:nth-child(odd) {
+  background-color: #e9e3da;
+}
+.producto-carrito:nth-child(even) {
+  background-color: #eeeae3;
 }
 
 /*BLOQUE DE CADA PRODUCTO*/
@@ -143,16 +180,7 @@ main {
   /*cuando pasamos el raton por encima aparecen el boton*/
   opacity: 1;
 }
-/*transicion de rotacion entre las dos imagenes.
-1- una foto la giramos desde el 0º al 90º
-2- giramos la otra de 90º al 180º
-3- backface-visibility para que no salga la parte de atras de la carta */
-.producto:hover > .producto__imagen--rotada1 {
-  transform: rotateY(180deg);
-}
-.producto:hover > .producto__imagen--rotada2 {
-  transform: rotateY(360deg);
-}
+
 .producto__imagen {
   /*tamaño de imagen, cubriendo toda la caja*/
   height: 100%;
@@ -166,12 +194,18 @@ main {
   transition: transform 0.5s ease-in-out;
   backface-visibility: hidden;
 }
+.producto:hover > .producto__imagen--rotada1 {
+  transform: rotateY(180deg);
+}
 .producto__imagen--rotada2 {
   position: absolute;
   /*transicion de rotacion final*/
   transform: rotateY(90deg);
   transition: transform 0.5s ease-in-out;
   backface-visibility: hidden;
+}
+.producto:hover > .producto__imagen--rotada2 {
+  transform: rotateY(360deg);
 }
 
 /*INFORMACION DEL PRODUCTO*/
