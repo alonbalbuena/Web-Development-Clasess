@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es-es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax 1 - Text File</title>
+</head>
+
+<body>
+    <button id="button">Get Text File</button>
+    <br><br>
+    <div id="text"></div>
+
+    <script>
+        //Crea el event listener
+        document.getElementById('button').addEventListener('click', loadText);
+
+        function loadText() {
+            // Crea objeto XHR (XMLHttpRequest)
+            var xhr = new XMLHttpRequest();
+            // OPEN - Tipo, url/file, async
+            xhr.open('GET', 'sample1.txt', true);
+
+            console.log('READYSTATE: ', xhr.readyState);
+
+            // OPTIONAL - Si se usa indicador de progreso. Por ej.
+            xhr.onprogress = function() {
+                console.log('READYSTATE: ', xhr.readyState);
+            }
+
+            xhr.onload = function() {
+                    console.log('READYSTATE: ', xhr.readyState);
+                    if (this.status == 200) {
+                        console.log(this.responseText);
+                        document.getElementById('text').innerHTML = this.responseText;
+                    } else if (this.status = 404) {
+                        document.getElementById('text').innerHTML = 'Not Found';
+                    }
+                }
+                // Procesar posibles errores
+            xhr.onerror = function() {
+                console.log('Request Error...');
+            }
+
+            // Envío de la petición
+            xhr.send();
+            console.log('READYSTATE: ', xhr.readyState);
+        }
+
+        // Valores de readyState
+        // 0: request not initialized 
+        // 1: server connection established
+        // 2: request received 
+        // 3: processing request 
+        // 4: request finished and response is ready
+
+        //  HTTP Status
+        // 200: "OK"
+        // 403: "Forbidden"
+        // 404: "Not Found"
+    </script>
+</body>
+
+</html>

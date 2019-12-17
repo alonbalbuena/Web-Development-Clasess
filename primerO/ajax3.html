@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es-es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax 3 - API que devuelve JSON externo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            background-color: #F2F2F2;
+            color: black;
+            min-width: 580px;
+        }
+        
+        .users {
+            display: table;
+            width: 80%;
+            margin: 0 auto;
+            border-spacing: 1em;
+        }
+        
+        .user {
+            display: table-row;
+            widows: 100%;
+            background-color: white;
+        }
+        
+        .user ul {
+            list-style: none;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="button">Load GitHub Users</button>
+    <br><br>
+    <h1>Usuarios de Github</h1>
+    <div class="users"></div>
+
+    <script>
+        document.getElementById('button').addEventListener('click', loadUsers);
+
+        // Lee usurios de Github 
+        function loadUsers() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.github.com/users', true);
+
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    var users = JSON.parse(this.responseText);
+
+                    var output = '';
+                    for (let i in users) {
+                        output += `
+                            <div class="user">
+                            <img src="${users[i].avatar_url}" width="90" height="90">
+                            <ul>
+                              <li>ID:  ${users[i].id} </li> 
+                              <li>Login:  ${users[i].login} </li> 
+                            </ul> 
+                            </div>
+                            `;
+                    }
+
+                    document.querySelector('.users').innerHTML = output;
+                }
+            }
+
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>
