@@ -6,17 +6,41 @@
   </head>
   <style>
     canvas {
+      background-color: ivory;
       border: 1px solid black;
-      transform: rotate(180deg);
+      /*transform: rotate(180deg);*/
+    }
+
+    button {
+      width: 500px;
+      height: 50px;
+      border: 5px solid black;
+      background-color: darkseagreen;
     }
   </style>
   <body>
     <canvas height="900" width="1300" id="canvas"></canvas>
+    <button id="hombre">Hombre</button>
+    <button id="mujer">Mujer</button>
+    <button id="ambos">Ambos</button>
 
     <script>
-      load();
+      document
+        .getElementById("hombre")
+        .addEventListener("click", mostrarHombres);
 
-      function load() {
+      document
+        .getElementById("mujer")
+        .addEventListener("click", mostrarMujeres);
+
+      document.getElementById("ambos").addEventListener("click", mostrarAmbos);
+
+      function mostrarHombres() {
+        //reinicio el canvas
+        separacion = 90;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        //peticion ajax
         var xhr = new XMLHttpRequest();
         xhr.open(
           "GET",
@@ -29,7 +53,53 @@
             const json = JSON.parse(this.responseText);
 
             //pintamos puntos
-            json.poblaciones.poblacion.forEach(punto => pintarPunto(punto));
+            json.poblaciones.poblacion.forEach(punto => pintarHombre(punto));
+          }
+        };
+        xhr.send();
+      }
+
+      function mostrarMujeres() {
+        //reinicio el canvas
+        separacion = 90;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          "http://opendata.gijon.es/descargar.php?id=217&tipo=JSON",
+          true
+        );
+
+        xhr.onload = function() {
+          if (this.status == 200) {
+            const json = JSON.parse(this.responseText);
+
+            //pintamos puntos
+            json.poblaciones.poblacion.forEach(punto => pintarMujer(punto));
+          }
+        };
+        xhr.send();
+      }
+
+      function mostrarAmbos() {
+        //reinicio el canvas
+        separacion = 90;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          "http://opendata.gijon.es/descargar.php?id=217&tipo=JSON",
+          true
+        );
+
+        xhr.onload = function() {
+          if (this.status == 200) {
+            const json = JSON.parse(this.responseText);
+
+            //pintamos puntos
+            json.poblaciones.poblacion.forEach(punto => pintarAmbos(punto));
           }
         };
         xhr.send();
@@ -40,21 +110,115 @@
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
 
-      //pinto línea eje Y
-      ctx.beginPath();
-      ctx.moveTo(80, 160);
-      ctx.lineTo(80, 890);
-      ctx.stroke();
-      ctx.closePath();
+      function pintarHombre(punto) {
+        //pinto línea eje Y
+        ctx.beginPath();
+        ctx.moveTo(80, 160);
+        ctx.lineTo(80, 890);
+        ctx.stroke();
 
-      //pinto línea eje X
-      ctx.beginPath();
-      ctx.moveTo(80, 160);
-      ctx.lineTo(1180, 160);
-      ctx.stroke();
-      ctx.closePath();
+        x = 0;
+        for (let i = 0; i < 890; i = i + 1000 / 34) {
+          ctx.moveTo(80, 160 + i);
+          ctx.lineTo(50, 160 + i);
+          ctx.stroke();
+          ctx.fillStyle = "black";
+          ctx.font = "13px Fantasy";
+          ctx.fillText(1000 * x, 50, 160 + i);
+          ++x;
+        }
 
-      function pintarPunto(punto) {
+        ctx.closePath();
+
+        //pinto línea eje X
+        ctx.beginPath();
+        ctx.moveTo(80, 160);
+        ctx.lineTo(1180, 160);
+        ctx.stroke();
+        ctx.closePath();
+
+        //hombres
+        ctx.beginPath();
+        ctx.arc(separacion, 180 + punto.varon / 35, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue";
+        ctx.fill();
+        ctx.closePath();
+
+        //nombres
+        ctx.beginPath();
+        ctx.save();
+
+        ctx.translate(separacion, 150);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "left";
+        ctx.fillStyle = "black";
+        ctx.font = "13px Comic Sans MS";
+        ctx.fillText(punto.barrio, 0, 15 / 2);
+
+        ctx.restore();
+        ctx.closePath();
+
+        ctx.puntoAnterior = punto;
+        separacion += 24;
+      }
+
+      function pintarMujer(punto) {
+        //pinto línea eje Y
+        ctx.beginPath();
+        ctx.moveTo(80, 160);
+        ctx.lineTo(80, 890);
+        ctx.stroke();
+        ctx.closePath();
+
+        //pinto línea eje X
+        ctx.beginPath();
+        ctx.moveTo(80, 160);
+        ctx.lineTo(1180, 160);
+        ctx.stroke();
+        ctx.closePath();
+
+        //mujeres
+        ctx.beginPath();
+        ctx.arc(separacion, 180 + punto.mujer / 35, 3, 0, 2 * Math.PI);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.closePath();
+
+        //nombres
+        ctx.beginPath();
+        ctx.save();
+
+        ctx.translate(separacion, 150);
+        ctx.rotate(-Math.PI / 2);
+
+        ctx.textAlign = "left";
+        ctx.fillStyle = "black";
+        ctx.font = "13px Comic Sans MS";
+        ctx.fillText(punto.barrio, 0, 15 / 2);
+
+        ctx.restore();
+        ctx.closePath();
+
+        ctx.puntoAnterior = punto;
+        separacion += 24;
+      }
+
+      function pintarAmbos(punto) {
+        //pinto línea eje Y
+        ctx.beginPath();
+        ctx.moveTo(80, 160);
+        ctx.lineTo(80, 890);
+        ctx.stroke();
+        ctx.closePath();
+
+        //pinto línea eje X
+        ctx.beginPath();
+        ctx.moveTo(80, 160);
+        ctx.lineTo(1180, 160);
+        ctx.stroke();
+        ctx.closePath();
+
         //hombres
         ctx.beginPath();
         ctx.arc(separacion, 180 + punto.varon / 35, 3, 0, 2 * Math.PI);
