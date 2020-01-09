@@ -4,27 +4,45 @@
     <meta charset="UTF-8" />
     <title>Document</title>
   </head>
+  <!--IMPORTAMOS FUENTES-->
+  <link
+    href="https://fonts.googleapis.com/css?family=ABeeZee&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     canvas {
-      background-color: ivory;
+      background-color: whitesmoke;
       border: 1px solid black;
+      width: 100%;
       /*transform: rotate(180deg);*/
     }
 
+    .botones {
+      display: flex;
+      justify-content: space-between;
+    }
+
     button {
-      width: 500px;
+      border-radius: 15px;
+      font-family: "ABeeZee", sans-serif;
+      font-size: xx-large;
+      width: 400px;
       height: 50px;
-      border: 5px solid black;
+      border: 4px solid black;
       background-color: darkseagreen;
     }
   </style>
   <body>
     <canvas height="900" width="1300" id="canvas"></canvas>
-    <button id="hombre">Hombre</button>
-    <button id="mujer">Mujer</button>
-    <button id="ambos">Ambos</button>
+    <div class="botones">
+      <button id="hombre">Home</button>
+      <button id="mujer">Muyer</button>
+      <button id="ambos">Dambos</button>
+    </div>
 
     <script>
+      //BOTONES
       document
         .getElementById("hombre")
         .addEventListener("click", mostrarHombres);
@@ -35,10 +53,50 @@
 
       document.getElementById("ambos").addEventListener("click", mostrarAmbos);
 
+      function pintarEjes() {
+        //pintamos las marcas
+
+        //pinto línea eje Y
+        ctx.beginPath();
+        ctx.moveTo(80, 160);
+        ctx.lineTo(80, 890);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        x = 0;
+        for (let i = 0; i < 890; i = i + 1000 / 34) {
+          ctx.beginPath();
+          ctx.moveTo(80, 160 + i);
+          ctx.lineTo(1180, 160 + i);
+          ctx.lineWidth = 0.2;
+          ctx.stroke();
+          ctx.closePath();
+
+          ctx.fillStyle = "black";
+          ctx.font = "13px Abeezee";
+          ctx.fillText(1000 * x, 40, 160 + i);
+
+          ++x;
+        }
+        ctx.closePath();
+
+        //pinto línea eje X
+        ctx.beginPath();
+        ctx.moveTo(80, 160);
+        ctx.lineTo(1180, 160);
+        ctx.lineWidth = 0.2;
+        ctx.stroke();
+        ctx.closePath();
+      }
+
       function mostrarHombres() {
         //reinicio el canvas
         separacion = 90;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        //pintamos ejes de nuevo
+        pintarEjes();
 
         //peticion ajax
         var xhr = new XMLHttpRequest();
@@ -64,6 +122,9 @@
         separacion = 90;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        //pintamos ejes de nuevo
+        pintarEjes();
+
         var xhr = new XMLHttpRequest();
         xhr.open(
           "GET",
@@ -87,6 +148,9 @@
         separacion = 90;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        //pintamos lineas de nuevo
+        pintarEjes();
+
         var xhr = new XMLHttpRequest();
         xhr.open(
           "GET",
@@ -105,41 +169,16 @@
         xhr.send();
       }
 
+      //inicializamos
       var puntoAnterior = { varon: 0 };
       var separacion = 90;
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext("2d");
 
       function pintarHombre(punto) {
-        //pinto línea eje Y
-        ctx.beginPath();
-        ctx.moveTo(80, 160);
-        ctx.lineTo(80, 890);
-        ctx.stroke();
-
-        x = 0;
-        for (let i = 0; i < 890; i = i + 1000 / 34) {
-          ctx.moveTo(80, 160 + i);
-          ctx.lineTo(50, 160 + i);
-          ctx.stroke();
-          ctx.fillStyle = "black";
-          ctx.font = "13px Fantasy";
-          ctx.fillText(1000 * x, 50, 160 + i);
-          ++x;
-        }
-
-        ctx.closePath();
-
-        //pinto línea eje X
-        ctx.beginPath();
-        ctx.moveTo(80, 160);
-        ctx.lineTo(1180, 160);
-        ctx.stroke();
-        ctx.closePath();
-
         //hombres
         ctx.beginPath();
-        ctx.arc(separacion, 180 + punto.varon / 35, 3, 0, 2 * Math.PI);
+        ctx.arc(separacion, 180 + punto.varon / 35, 5, 0, 2 * Math.PI);
         ctx.fillStyle = "blue";
         ctx.fill();
         ctx.closePath();
@@ -153,7 +192,7 @@
 
         ctx.textAlign = "left";
         ctx.fillStyle = "black";
-        ctx.font = "13px Comic Sans MS";
+        ctx.font = "13px abeezee";
         ctx.fillText(punto.barrio, 0, 15 / 2);
 
         ctx.restore();
@@ -164,23 +203,9 @@
       }
 
       function pintarMujer(punto) {
-        //pinto línea eje Y
-        ctx.beginPath();
-        ctx.moveTo(80, 160);
-        ctx.lineTo(80, 890);
-        ctx.stroke();
-        ctx.closePath();
-
-        //pinto línea eje X
-        ctx.beginPath();
-        ctx.moveTo(80, 160);
-        ctx.lineTo(1180, 160);
-        ctx.stroke();
-        ctx.closePath();
-
         //mujeres
         ctx.beginPath();
-        ctx.arc(separacion, 180 + punto.mujer / 35, 3, 0, 2 * Math.PI);
+        ctx.arc(separacion, 180 + punto.mujer / 35, 5, 0, 2 * Math.PI);
         ctx.fillStyle = "red";
         ctx.fill();
         ctx.closePath();
@@ -194,7 +219,7 @@
 
         ctx.textAlign = "left";
         ctx.fillStyle = "black";
-        ctx.font = "13px Comic Sans MS";
+        ctx.font = "13px abeezee";
         ctx.fillText(punto.barrio, 0, 15 / 2);
 
         ctx.restore();
@@ -205,30 +230,16 @@
       }
 
       function pintarAmbos(punto) {
-        //pinto línea eje Y
-        ctx.beginPath();
-        ctx.moveTo(80, 160);
-        ctx.lineTo(80, 890);
-        ctx.stroke();
-        ctx.closePath();
-
-        //pinto línea eje X
-        ctx.beginPath();
-        ctx.moveTo(80, 160);
-        ctx.lineTo(1180, 160);
-        ctx.stroke();
-        ctx.closePath();
-
         //hombres
         ctx.beginPath();
-        ctx.arc(separacion, 180 + punto.varon / 35, 3, 0, 2 * Math.PI);
+        ctx.arc(separacion, 180 + punto.varon / 35, 5, 0, 2 * Math.PI);
         ctx.fillStyle = "blue";
         ctx.fill();
         ctx.closePath();
 
         //mujeres
         ctx.beginPath();
-        ctx.arc(separacion, 180 + punto.mujer / 35, 3, 0, 2 * Math.PI);
+        ctx.arc(separacion, 180 + punto.mujer / 35, 5, 0, 2 * Math.PI);
         ctx.fillStyle = "red";
         ctx.fill();
         ctx.closePath();
@@ -242,7 +253,7 @@
 
         ctx.textAlign = "left";
         ctx.fillStyle = "black";
-        ctx.font = "13px Comic Sans MS";
+        ctx.font = "13px abeezee";
         ctx.fillText(punto.barrio, 0, 15 / 2);
 
         ctx.restore();
