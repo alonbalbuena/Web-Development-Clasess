@@ -1,0 +1,64 @@
+/*Reinicio de los estilo*/
+body,
+html,
+p,
+h1 {
+  margin: 0px;
+  padding: 0px;
+}
+
+/*ESTILOS*/
+header {
+  background-color: peachpuff;
+}
+
+.header__titulo {
+  font-size: xx-large;
+  font-family: "Satisfy", cursive;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/*SUBTITULO DE BOTONES*/
+.seccion-botones {
+  display: flex;
+}
+
+.seccion-botones__boton {
+  flex: 1 0 150px;
+  height: 30px;
+
+  /*transicion para el hover*/
+  transition: flex-grow 0.5s;
+}
+.seccion-botones__boton:hover {
+  flex-grow: 2;
+}
+
+/*ZONA DE VIAJES*/
+
+.seccion-viajes {
+  display: flex;
+  flex-flow: wrap row;
+
+  width: 80%;
+
+  /*alineamos al centro*/
+  position: relative;
+  left: 10%;
+}
+
+.viaje {
+  flex: 1 0 300px;
+  border: solid black 3px;
+}
+
+.viaje__foto {
+  /*delimitamos la zona que ocupara la foto*/
+  width: 100%;
+  height: 80%;
+
+  /*indicamos como se va a adpatar a esa zona*/
+  object-fit: cover;
+}
