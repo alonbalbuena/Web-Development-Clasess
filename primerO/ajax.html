@@ -55,9 +55,9 @@
     <h1>Población por Barrio</h1>
     <canvas height="900" width="1300" id="canvas"></canvas>
     <div class="botones">
-      <button id="hombre">Home</button>
-      <button id="mujer">Muyer</button>
-      <button id="ambos">Dambos</button>
+      <button id="hombre">Hombres</button>
+      <button id="mujer">Mujeres</button>
+      <button id="ambos">Ambos</button>
     </div>
 
     <script>
@@ -105,11 +105,11 @@
         //Ñ
         nombreCorregido = nombre.replace("&#241;", String.fromCharCode(241));
         //Í
-        nombreCorregido.replace("&#237;", String.fromCharCode(237));
+        nombre.replace("&#237;", String.fromCharCode(237));
         //Ó
-        // nombreCorregido.replace("&#243;", String.fromCharCode(243));
+        nombre.replace("&#243;", String.fromCharCode(243));
         //Ü
-        // nombreCorregido.replace("&#252;", String.fromCharCode(252));
+        nombre.replace("&#252;", String.fromCharCode(252));
 
         //pintamos el nombre
         ctx.fillText(nombreCorregido, 0, 15 / 2);
