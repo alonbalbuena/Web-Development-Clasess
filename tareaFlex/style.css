@@ -10,6 +10,7 @@ h1 {
 /*ESTILOS*/
 header {
   background-color: peachpuff;
+  height: 100px;
 }
 
 .header__titulo {
@@ -18,6 +19,9 @@ header {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;
+
+  position: relative;
+  top: 25px;
 }
 
 /*SUBTITULO DE BOTONES*/
@@ -26,12 +30,28 @@ header {
 }
 
 .seccion-botones__boton {
+  /*reiniciamos estilos*/
+  border: none;
+
   flex: 1 0 150px;
-  height: 30px;
+  height: 45px;
+
+  font-family: Arial;
+  font-size: xx-large;
 
   /*transicion para el hover*/
   transition: flex-grow 0.5s;
 }
+.seccion-botones__boton:nth-child(1) {
+  background-color: coral;
+}
+.seccion-botones__boton:nth-child(2) {
+  background-color: cornflowerblue;
+}
+.seccion-botones__boton:nth-child(3) {
+  background-color: gold;
+}
+
 .seccion-botones__boton:hover {
   flex-grow: 2;
 }
@@ -61,4 +81,11 @@ header {
 
   /*indicamos como se va a adpatar a esa zona*/
   object-fit: cover;
+}
+
+.viaje__titulo {
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: large;
 }
