@@ -2,24 +2,30 @@
 body,
 html,
 p,
-h1 {
+h1,
+button {
   margin: 0px;
   padding: 0px;
+  border: none;
 }
 
 /*ESTILOS*/
 header {
-  background-color: peachpuff;
+  background-color: #457abf;
   height: 100px;
 }
 
 .header__titulo {
   font-size: xx-large;
   font-family: "Satisfy", cursive;
-  text-align: center;
+
   text-transform: uppercase;
+  color: #bf9545;
+  text-shadow: 3px 1px #735112;
   letter-spacing: 3px;
 
+  /*colocamos en el centro el texto*/
+  text-align: center;
   position: relative;
   top: 25px;
 }
@@ -30,30 +36,27 @@ header {
 }
 
 .seccion-botones__boton {
-  /*reiniciamos estilos*/
-  border: none;
-
-  flex: 1 0 150px;
-  height: 45px;
-
   font-family: Arial;
   font-size: xx-large;
 
+  /*los botones se reparten todo el ancho de la pagina*/
+  flex-grow: 1;
+
   /*transicion para el hover*/
   transition: flex-grow 0.5s;
+  cursor: pointer;
 }
-.seccion-botones__boton:nth-child(1) {
-  background-color: coral;
-}
-.seccion-botones__boton:nth-child(2) {
-  background-color: cornflowerblue;
-}
-.seccion-botones__boton:nth-child(3) {
-  background-color: gold;
-}
-
 .seccion-botones__boton:hover {
   flex-grow: 2;
+}
+.seccion-botones__boton:nth-child(1) {
+  background-color: #1ca68a;
+}
+.seccion-botones__boton:nth-child(2) {
+  background-color: #ffd769;
+}
+.seccion-botones__boton:nth-child(3) {
+  background-color: #ff3e4c;
 }
 
 /*ZONA DE VIAJES*/
@@ -62,22 +65,30 @@ header {
   display: flex;
   flex-flow: wrap row;
 
-  width: 80%;
-
-  /*alineamos al centro*/
-  position: relative;
-  left: 10%;
+  background-color: #24324f;
 }
 
 .viaje {
+  /*distribuimos el tamaño de la ventan entre todos los viajes*/
   flex: 1 0 300px;
-  border: solid black 3px;
+  margin: 10px;
+
+  /*se distribuyen el espacion de forma que el que tenga el hover duplicara su tamaño(creando asi una web muy dinamica)*/
+  transition: flex-grow 1s;
+  cursor: pointer;
+}
+
+.viaje:hover > .viaje__foto {
+  filter: blur(4px);
+}
+.viaje:hover {
+  flex-grow: 3;
 }
 
 .viaje__foto {
   /*delimitamos la zona que ocupara la foto*/
   width: 100%;
-  height: 80%;
+  height: 100%;
 
   /*indicamos como se va a adpatar a esa zona*/
   object-fit: cover;
@@ -85,7 +96,27 @@ header {
 
 .viaje__titulo {
   text-align: center;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  font-size: large;
+  text-shadow: 1px 1px 3px white;
+
+  font-family: "Indie Flower", cursive;
+  font-weight: bold;
+  font-size: x-large;
+
+  background-color: rgba(255, 255, 255, 0.4);
+
+  /*superponemos el titulo a la foto*/
+  position: relative;
+  bottom: 50%;
+}
+
+@media (max-width: 600px) {
+  .seccion-botones {
+    flex-direction: column;
+  }
+  .seccion-botones__boton {
+    height: 50px;
+  }
+  .seccion-botones__boton:hover {
+    flex-grow: 2;
+  }
 }
