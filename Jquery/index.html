@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jquery ui</title>
+    <!--linkamos el css de jquery ui-->
+    <link rel="stylesheet" href="jquery-ui.css" />
+    <link rel="stylesheet" href="jquery-ui.structure.css" />
+    <link rel="stylesheet" href="jquery-ui.theme.css" />
+    <!--linkamos nuestro css que sobreescribe al anterior-->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="acordeon">
+      <h1>Hola</h1>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+        sapiente praesentium beatae animi alias labore iusto quisquam dolor
+        natus soluta nobis neque iure explicabo iste excepturi, necessitatibus
+        totam quod cum!
+      </p>
+      <h1>Hola</h1>
+      <p>
+        Laboriosam modi inventore praesentium quo, ex aliquam molestiae tenetur
+        cupiditate explicabo iusto. Natus dolores, inventore nobis magni
+        dignissimos fugit reiciendis illum, dolorum atque quaerat tempora
+        accusantium nemo officiis modi quas.
+      </p>
+      <h1>Hola</h1>
+      <p>
+        Sed facere cumque expedita, exercitationem repudiandae nobis ut iste
+        culpa vel veniam, labore recusandae modi quae quis fuga excepturi ipsa
+        quam ab sint corrupti. Officia aut ex fugit sunt totam!
+      </p>
+    </div>
+    <div class="cuadrado"></div>
+  </body>
+
+  <!--introducimos el jquery-ui-->
+  <script src="jquery.js"></script>
+  <script src="jquery-ui.js"></script>
+
+  <!--Codigo-->
+  <script>
+    $(".acordeon").accordion();
+    $(".acordeon").click(function() {
+      $(".cuadrado").toggle("explode");
+    });
+  </script>
+</html>

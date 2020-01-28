@@ -1,0 +1,20 @@
+body {
+  display: grid;
+  grid-template-columns: 200px auto 200px;
+}
+
+button {
+  grid-column: 2/3;
+}
+
+.acordeon {
+  grid-column: 2/3;
+}
+
+.cuadrado {
+  grid-column: 2/3;
+
+  background-color: blueviolet;
+  width: 200px;
+  height: 200px;
+}
