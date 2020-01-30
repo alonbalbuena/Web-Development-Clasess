@@ -11,42 +11,46 @@
     <link rel="stylesheet" href="jquery-ui.theme.css" />
     <!--linkamos nuestro css que sobreescribe al anterior-->
     <link rel="stylesheet" href="index.css" />
+    <!--introducimos el jquery-ui-->
+    <script src="jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Delius+Unicase&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="acordeon">
-      <h1>Hola</h1>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-        sapiente praesentium beatae animi alias labore iusto quisquam dolor
-        natus soluta nobis neque iure explicabo iste excepturi, necessitatibus
-        totam quod cum!
-      </p>
-      <h1>Hola</h1>
-      <p>
-        Laboriosam modi inventore praesentium quo, ex aliquam molestiae tenetur
-        cupiditate explicabo iusto. Natus dolores, inventore nobis magni
-        dignissimos fugit reiciendis illum, dolorum atque quaerat tempora
-        accusantium nemo officiis modi quas.
-      </p>
-      <h1>Hola</h1>
-      <p>
-        Sed facere cumque expedita, exercitationem repudiandae nobis ut iste
-        culpa vel veniam, labore recusandae modi quae quis fuga excepturi ipsa
-        quam ab sint corrupti. Officia aut ex fugit sunt totam!
-      </p>
-    </div>
-    <div class="cuadrado"></div>
+    <section class="nav-izq">
+      <button class="mover">mover</button>
+      <button>borrar</button>
+      <button class="crear">crear</button>
+      <button class="color-rojo">rojo</button>
+      <button class="color-azul">azul</button>
+      <button class="color-verde">verde</button>
+    </section>
+    <section class="nav-mid">
+      <h1>Paint</h1>
+    </section>
+    <div class="lienzo"></div>
+    <section class="nav-dcha">
+      <button class="mover">mover</button>
+      <button>borrar</button>
+    </section>
   </body>
-
-  <!--introducimos el jquery-ui-->
-  <script src="jquery.js"></script>
-  <script src="jquery-ui.js"></script>
-
   <!--Codigo-->
   <script>
-    $(".acordeon").accordion();
-    $(".acordeon").click(function() {
-      $(".cuadrado").toggle("explode");
+    var color = "rosa";
+
+    $(".crear").click(() => {
+      $(".lienzo").append(`<p class ='elemento elemento--${color}'></p>`);
+    });
+
+    $(".mover").click(() => {
+      $(".elemento").draggable();
+    });
+
+    $(".color-rojo").click(() => {
+      color = "rojo";
     });
   </script>
 </html>
