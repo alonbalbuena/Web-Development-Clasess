@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>jquery ui</title>
+    <!--linkamos el css de jquery ui-->
+    <link rel="stylesheet" href="jquery-ui.css" />
+    <link rel="stylesheet" href="jquery-ui.structure.css" />
+    <link rel="stylesheet" href="jquery-ui.theme.css" />
+    <!--linkamos nuestro css que sobreescribe al anterior-->
+    <link rel="stylesheet" href="" />
+    <!--introducimos el jquery-ui-->
+    <script src="jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <style>
+      body,
+      html,
+      header,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      header > ul {
+        display: flex;
+        justify-content: space-between;
+
+        background-color: blueviolet;
+
+        list-style: none;
+        font-family: Arial;
+      }
+
+      li {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <ul>
+        <li class="menu">
+          Lorem
+          <ul>
+            <li>Lorem</li>
+            <li>Lorem</li>
+            <li>Lorem</li>
+          </ul>
+        </li>
+        <li>Lorem</li>
+        <li>Lorem</li>
+        <li>Lorem</li>
+      </ul>
+    </header>
+  </body>
+  <!--Codigo-->
+  <script>
+    $(".menu").on("mouseenter", () => {
+      $(".menu>ul").toggle("slide", { direction: "up" }, 200);
+    });
+
+    $(".menu").on("mouseleave", () => {
+      $(".menu>ul").toggle("slide", { direction: "up" }, 200);
+    });
+  </script>
+</html>

@@ -22,35 +22,45 @@
   <body>
     <section class="nav-izq">
       <button class="mover">mover</button>
-      <button>borrar</button>
-      <button class="crear">crear</button>
-      <button class="color-rojo">rojo</button>
-      <button class="color-azul">azul</button>
-      <button class="color-verde">verde</button>
+      <button class="borrar">borrar</button>
+      <div class="colores">
+        <button class="color-rojo">red</button>
+        <button class="color-azul">blue</button>
+        <button class="color-verde">green</button>
+      </div>
     </section>
     <section class="nav-mid">
       <h1>Paint</h1>
     </section>
     <div class="lienzo"></div>
-    <section class="nav-dcha">
-      <button class="mover">mover</button>
-      <button>borrar</button>
-    </section>
+    <section class="nav-dcha"></section>
   </body>
   <!--Codigo-->
   <script>
-    var color = "rosa";
+    $(".color-verde").click(() => {
+      $(".lienzo").append(
+        $("<p class='elemento'></p>").css("background-color", "green")
+      );
+    });
 
-    $(".crear").click(() => {
-      $(".lienzo").append(`<p class ='elemento elemento--${color}'></p>`);
+    $(".color-rojo").click(() => {
+      $(".lienzo").append(
+        $("<p class='elemento'></p>").css("background-color", "red")
+      );
+    });
+
+    $(".color-azul").click(() => {
+      $(".lienzo").append(
+        $("<p class='elemento'></p>").css("background-color", "blue")
+      );
     });
 
     $(".mover").click(() => {
       $(".elemento").draggable();
     });
 
-    $(".color-rojo").click(() => {
-      color = "rojo";
+    $(".borrar").click(() => {
+      $(".elemento").remove();
     });
   </script>
 </html>

@@ -1,16 +1,22 @@
+html {
+  height: 100vh;
+}
+
 body {
+  height: 100vh;
+
   margin: 0;
   padding: 0;
 
   display: grid;
   grid-template-columns: 200px auto 200px;
-  grid-template-rows: 100px 200px;
+  grid-template-rows: 100px auto;
 }
 
 .nav-izq {
   grid-column: 1/2;
   grid-row: 1/3;
-  background-color: green;
+  background-color: cadetblue;
 }
 
 .nav-mid {
@@ -43,9 +49,7 @@ body {
   margin: 10px;
 }
 
-.elemento--rosa {
-  background-color: hotpink;
-}
-.elemento--rojo {
-  background-color: red;
+.colores {
+  display: flex;
+  flex-flow: row wrap;
 }
