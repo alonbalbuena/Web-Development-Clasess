@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!--css de mapa-->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <!--libreria leaflet-->
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
+    <!--estilos propios-->
+    <style>
+      #map {
+        height: 700px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+  <script>
+    var ajax = new XMLHttpRequest();
+    var peticion;
+
+    ajax.onload = function() {
+      peticion = JSON.parse(this.responseText).directorios.directorio;
+
+      peticion.forEach(biblioteca => {
+        //algunas no tienen coordenadas
+        if (biblioteca.localizacion.content === undefined) {
+          console.log("no tiene coordenadas");
+        } else {
+          pintarMarker(biblioteca.localizacion.content);
+        }
+      });
+    };
+
+    ajax.open(
+      "GET",
+      "http://datos.gijon.es/doc/cultura-ocio/bibliotecas.json",
+      true
+    );
+
+    ajax.send();
+
+    var map = L.map("map").setView([43.522727, -5.612458], 15);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+      map
+    );
+
+    function pintarMarker(coordenadas) {
+      //separamos las coordenadas que las divide un espacio
+      var arrayCoordenadas = coordenadas.split(" ", 2);
+
+      L.marker([arrayCoordenadas[0], arrayCoordenadas[1]]).addTo(map);
+    }
+
+    var ali = L.marker([43.522727, -5.612458]).addTo(map);
+    ali.bindPopup("Aqui esta Ali");
+  </script>
+</html>
