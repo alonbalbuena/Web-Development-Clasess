@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>comentarios de Leanne</h1>
+    <input type="text" name="idUsuario" />
+    <button>Enviar</button>
+  </body>
+  <script>
+    document.querySelector("button").addEventListener("click", imprimirDatos);
+
+    function imprimirDatos() {
+      const input = document.querySelector("input").value;
+      getJSON().then(posts =>
+        filterPosts(posts, input).then(post => console.log(post))
+      );
+    }
+
+    function filterPosts(posts, id) {
+      //filtra los posts por el id introducido
+      return new Promise(function(resolve, reject) {
+        resolve(posts.filter(post => post.id == id));
+      });
+    }
+
+    function getJSON() {
+      //devuelve una promesa que devuleve un error o un succes
+      return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        var datos;
+
+        xhr.onload = function() {
+          if (xhr.status == 200) {
+            //devuelve el usuario si va bien la peticion
+            resolve(JSON.parse(this.responseText));
+            //response se usa solo con responseType
+          } else {
+            //si no va bien
+            reject("error AJAX");
+          }
+        };
+
+        xhr.open("GET", `https://jsonplaceholder.typicode.com/users`, true);
+
+        xhr.send();
+      });
+    }
+  </script>
+</html>
