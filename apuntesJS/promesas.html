@@ -6,30 +6,57 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>comentarios de Leanne</h1>
     <input type="text" name="idUsuario" />
     <button>Enviar</button>
   </body>
   <script>
+    //input del campo de texto GLOBAL
+    const input = document.querySelector("input");
+
     document.querySelector("button").addEventListener("click", imprimirDatos);
 
     function imprimirDatos() {
-      const input = document.querySelector("input").value;
-      getJSON().then(posts =>
-        filterPosts(posts, input).then(post => console.log(post))
-      );
+      getJSON()
+        .then(datos => getUser(datos))
+        .then(usuarios => getPost(usuarios))
+        .then(posts => getComentarios(posts))
+        .then(comentarios => console.log(comentarios));
     }
 
-    function filterPosts(posts, id) {
-      //filtra los posts por el id introducido
-      return new Promise(function(resolve, reject) {
-        resolve(posts.filter(post => post.id == id));
+    function getUser(datos) {
+      //devuelve usuario por id, por lo que va a devolver uno
+      return new Promise((resolve, reject) => {
+        resolve(datos.filter(post => post.id == input.value));
+      });
+    }
+
+    function getPost(user) {
+      //buscamos los post de dicho usuario
+      return new Promise((resolve, reject) => {
+        fetch(
+          `https://jsonplaceholder.typicode.com/posts/?userId=${input.value}`
+        )
+          .then(datos => datos.json())
+          .then(json => resolve(json));
+      });
+    }
+
+    function getComentarios(posts) {
+      //buscamos los comentarios en la base de datos con dicho id
+
+      //cojemos el id del primer post pasado(ya que el resto son iguales)
+      return new Promise((resolve, reject) => {
+        fetch(
+          `https://jsonplaceholder.typicode.com/comments/?postId=${posts[0].id}`
+        )
+          .then(datos => datos.json())
+          .then(json => resolve(json));
       });
     }
 
     function getJSON() {
       //devuelve una promesa que devuleve un error o un succes
-      return new Promise(function(resolve, reject) {
+      return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
         var datos;
 
