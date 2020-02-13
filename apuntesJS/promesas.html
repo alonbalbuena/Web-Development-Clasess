@@ -6,14 +6,22 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="text" name="idUsuario" />
-    <button>Enviar</button>
+    <select> </select>
   </body>
   <script>
-    //input del campo de texto GLOBAL
-    const input = document.querySelector("input");
+    //queremos que nos aparezcan los usuarios nada mas cargar la pagina
+    window.onload = getJSON().then(usuarios =>
+      usuarios.forEach(usuario => imprimirUsuario(usuario))
+    );
 
-    document.querySelector("button").addEventListener("click", imprimirDatos);
+    function imprimirUsuario(usuario) {
+      document.querySelector(
+        "select"
+      ).innerHTML += `<option>${usuario.name}</option>`;
+    }
+
+    //QUE PASA CUANDO cambio de opcion en el select
+    document.querySelector("select").addEventListener("change", imprimirDatos);
 
     function imprimirDatos() {
       getJSON()
@@ -25,53 +33,44 @@
 
     function getUser(datos) {
       //devuelve usuario por id, por lo que va a devolver uno
-      return new Promise((resolve, reject) => {
-        resolve(datos.filter(post => post.id == input.value));
-      });
+      return new Promise((resolve, reject) =>
+        resolve(datos.filter(usuario => usuario.id == 2))
+      );
     }
 
     function getPost(user) {
       //buscamos los post de dicho usuario
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) =>
         fetch(
-          `https://jsonplaceholder.typicode.com/posts/?userId=${input.value}`
+          `https://jsonplaceholder.typicode.com/posts/?userId=${user[0].id}`
         )
           .then(datos => datos.json())
-          .then(json => resolve(json));
-      });
+          .then(json => resolve(json))
+      );
     }
 
     function getComentarios(posts) {
       //buscamos los comentarios en la base de datos con dicho id
-
-      //cojemos el id del primer post pasado(ya que el resto son iguales)
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) =>
+        //cojemos el id del primer post pasado(ya que el resto son iguales)
         fetch(
           `https://jsonplaceholder.typicode.com/comments/?postId=${posts[0].id}`
         )
           .then(datos => datos.json())
-          .then(json => resolve(json));
-      });
+          .then(json => resolve(json))
+      );
     }
 
     function getJSON() {
       //devuelve una promesa que devuleve un error o un succes
       return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
-        var datos;
 
         xhr.onload = function() {
-          if (xhr.status == 200) {
-            //devuelve el usuario si va bien la peticion
-            resolve(JSON.parse(this.responseText));
-            //response se usa solo con responseType
-          } else {
-            //si no va bien
-            reject("error AJAX");
-          }
+          resolve(JSON.parse(this.responseText));
         };
 
-        xhr.open("GET", `https://jsonplaceholder.typicode.com/users`, true);
+        xhr.open("GET", `https://jsonplaceholder.typicode.com/users`);
 
         xhr.send();
       });
