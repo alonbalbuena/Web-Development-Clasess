@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .grid {
+        display: flex;
+      }
+      .elemento {
+        height: 100px;
+        width: 200px;
+        border: solid 1px blanchedalmond;
+        box-sizing: border-box;
+        background-color: chocolate;
+      }
+
+      .elemento:nth-child(4) {
+        height: 200px;
+      }
+
+      .elemento:nth-child(9) {
+        height: 400px;
+      }
+
+      .elemento:nth-child(12) {
+        height: 30px;
+      }
+
+      .estatico {
+        color: white;
+        background: #a2c;
+        font-size: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="estatico">BLOQUE ESTATICO</div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+      <div class="elemento"></div>
+    </div>
+  </body>
+  <!--Link a Masonry-->
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+  <!--CODIGO-->
+  <script>
+    var elem = document.querySelector(".grid");
+
+    var msnry = new Masonry(elem, {
+      itemSelector: ".elemento",
+      columnWidth: 200
+    });
+  </script>
+</html>
