@@ -4,37 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!--ESTILOS-->
+    <style>
+      .posts {
+        background-color: brown;
+      }
+      .comentarios {
+        background-color: blue;
+      }
+    </style>
   </head>
   <body>
     <select> </select>
+    <div class="posts"></div>
+    <div class="comentarios"></div>
   </body>
   <script>
+    const select = document.querySelector("select");
+    const commentSection = document.querySelector(".comentarios");
+    const postSection = document.querySelector(".posts");
+
     //queremos que nos aparezcan los usuarios nada mas cargar la pagina
     window.onload = getJSON().then(usuarios =>
-      usuarios.forEach(usuario => imprimirUsuario(usuario))
+      usuarios.forEach(usuario => {
+        //guardamos el id de usuario en el value para poder filtrar en la funcion getUser
+        select.innerHTML += `<option value=${usuario.id}>${usuario.name}</option>`;
+      })
     );
 
-    function imprimirUsuario(usuario) {
-      document.querySelector(
-        "select"
-      ).innerHTML += `<option>${usuario.name}</option>`;
-    }
-
     //QUE PASA CUANDO cambio de opcion en el select
-    document.querySelector("select").addEventListener("change", imprimirDatos);
-
-    function imprimirDatos() {
+    select.addEventListener("change", () =>
       getJSON()
         .then(datos => getUser(datos))
         .then(usuarios => getPost(usuarios))
         .then(posts => getComentarios(posts))
-        .then(comentarios => console.log(comentarios));
+        .then(comentarios => printComentarios(comentarios))
+    );
+
+    function printComentarios(comentarios) {
+      //reiniciamos la pagina
+      commentSection.textContent = "";
+      //pintamos
+      comentarios.forEach(comentario => {
+        commentSection.innerHTML += `
+        <h1>${comentario.name}</h1>
+        <p>${comentario.body}</p>
+      `;
+      });
     }
 
     function getUser(datos) {
       //devuelve usuario por id, por lo que va a devolver uno
       return new Promise((resolve, reject) =>
-        resolve(datos.filter(usuario => usuario.id == 2))
+        resolve(datos.filter(usuario => usuario.id == select.value))
       );
     }
 
@@ -50,6 +72,14 @@
     }
 
     function getComentarios(posts) {
+      //----1----
+      //PRIMERO
+      //PINTAMOS LOS POSTS DEL USUARIO MIENTRAS ESPERAMOS A OBTENER LOS DATOS DE LOS COMENTARIOS (ES ASINCRONO)
+      posts.forEach(post => {
+        postSection.innerHTML += `<h1>${post.title}</h1><p>${post.body}</p>`;
+      });
+      //----2----
+      // SEGUNDO
       //buscamos los comentarios en la base de datos con dicho id
       return new Promise((resolve, reject) =>
         //cojemos el id del primer post pasado(ya que el resto son iguales)

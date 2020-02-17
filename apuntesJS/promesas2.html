@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    fetch("https://jsonplaceholderxxx.typicode.com/comments/").then(
+      exito => console.log(exito),
+      error => console.log(error)
+    );
+
+    fetch("https://jsonplaceholderxxx.typicode.com/comments/")
+      .then(exito => console.log(exito))
+      .catch(error => console.log(error));
+  </script>
+</html>

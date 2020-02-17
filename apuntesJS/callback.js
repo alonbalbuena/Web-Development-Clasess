@@ -1,14 +1,13 @@
-//tardara 2 SEGUNDOS
-let encenderCuadro = () => {
-  /*hacemos que el tiempo de encendido del cuadro sea mayor que el de las bombillas para comprobar el funcionamiento del callback*/
-  setTimeout(() => console.log("el cuadro de la luz esta encendido"), 2000);
-};
+const usuarios = [
+  { id: 1, nombre: "hola" },
+  { id: 1, nombre: "hola" },
+  { id: 1, nombre: "hola" }
+];
 
-//tardara 1 SEGUNDO
-let encenderBombillas = callback => {
-  callback();
+function getUsuarios(callback) {
   setTimeout(() => {
-    console.log("por tanto se pueden encender las bombillas ");
-  }, 1000);
-};
-encenderBombillas(encenderCuadro);
+    callback(null, usuarios);
+  }, 200);
+}
+
+getUsuarios((err, usuarios) => console.log(usuarios));
