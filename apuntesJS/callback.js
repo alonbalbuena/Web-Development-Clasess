@@ -1,13 +1,19 @@
 const usuarios = [
-  { id: 1, nombre: "hola" },
-  { id: 1, nombre: "hola" },
-  { id: 1, nombre: "hola" }
+  { id: 1, nombre: "lucia", profesion: 1 },
+  { id: 2, nombre: "paco", profesion: 1 },
+  { id: 3, nombre: "alonso", profesion: 2 }
 ];
+const profesiones = {
+  1: "programador",
+  2: "diseñador"
+};
 
-function getUsuarios(callback) {
-  setTimeout(() => {
-    callback(null, usuarios);
-  }, 200);
+function hacerAlgo(callback) {
+  callback("hacer algo");
 }
 
-getUsuarios((err, usuarios) => console.log(usuarios));
+function hacerOtraCosa(mensaje) {
+  console.log(mensaje + "hacer otra cosa");
+}
+
+hacerAlgo(hacerOtraCosa);
