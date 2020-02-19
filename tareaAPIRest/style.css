@@ -1,0 +1,64 @@
+body,
+p,
+h1 {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: grid;
+  grid-template-columns: 90px auto 90px;
+  grid-template-rows: 50px 1000px 1000px;
+}
+.header {
+  grid-row: 1/2;
+  grid-column: 1/4;
+  background-color: blueviolet;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+}
+select {
+}
+.posts {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  background-color: brown;
+  display: flex;
+}
+.comentarios {
+  grid-row: 3/4;
+  grid-column: 2/3;
+  background-color: blue;
+  display: flex;
+}
+
+.post,
+.comentario {
+  width: 200px;
+}
+
+.loading {
+  display: none;
+  /*fijo en el centro*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+.loading:after {
+  content: " ";
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 18px solid red;
+  border-color: red transparent red transparent;
+  animation: loading 2s linear infinite;
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
