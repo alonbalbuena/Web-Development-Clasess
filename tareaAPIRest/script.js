@@ -15,24 +15,21 @@ window.onload = getJSON().then(usuarios =>
 select.addEventListener("change", () =>
   //el finally es ejcutado tenga fallo o no, aprovechamos para poner una animacion mientras carga
   getJSON()
-    .finally(() => iniciarAnimacion)
+    .finally(() => iniciarAnimacion())
     .then(datos => getUser(datos))
     .then(usuarios => getPost(usuarios))
     .then(posts => getComentarios(posts))
     .then(comentarios => printComentarios(comentarios))
-    .finally(() => finalizarAnimacion)
+    .finally(() => finalizarAnimacion())
 );
 
 function iniciarAnimacion() {
   loading.style.display = "initial";
-  commentSection.style.filter = "blur(50px)";
-  postSection.style.filter = "blur(50px)";
 }
 
 function finalizarAnimacion() {
-  loading.style.display = "initial";
-  commentSection.style.filter = "initial";
-  postSection.style.filter = "initial";
+  loading.style.display = "none";
+  console.log("terminado de cargar datos");
 }
 
 function printComentarios(comentarios) {
@@ -68,7 +65,7 @@ function getComentarios(posts) {
   //PRIMERO
   //PINTAMOS LOS POSTS DEL USUARIO MIENTRAS ESPERAMOS A OBTENER LOS DATOS DE LOS COMENTARIOS (ES ASINCRONO)
   posts.forEach(post => {
-    postSection.innerHTML += `<div class="post"><h1>${post.title}</h1><p>${post.body}</p></div>`;
+    postSection.innerHTML += `<div class="post"><h1 class="post__titulo">${post.title}</h1><p class="post__body">${post.body}</p></div>`;
   });
   //----2----
   // SEGUNDO
