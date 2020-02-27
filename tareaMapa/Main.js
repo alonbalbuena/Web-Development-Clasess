@@ -2,24 +2,22 @@ class Icono extends L.Icon {
   constructor(url) {
     //llamamos a L.ICON
     super({
-      options: {
-        iconSize: [25, 25],
-        popupAnchor: [0, -13]
-      },
+      iconSize: [25, 25],
+      popupAnchor: [0, -13],
       //añadimos la caracteristica extra
       iconUrl: url
     });
   }
 }
 
-document.querySelector(".biblios").addEventListener("click", function() {
+document.querySelector(".biblios").addEventListener("click", () => {
   pedirDatos(
     "http://datos.gijon.es/doc/cultura-ocio/bibliotecas.json",
     pintarMarker,
     new Icono("./book-icon.svg")
   );
 });
-document.querySelector(".sanidad").addEventListener("click", function() {
+document.querySelector(".sanidad").addEventListener("click", () => {
   pedirDatos(
     "http://datos.gijon.es/doc/salud/centros-sanitarios.json",
     pintarMarker,
@@ -62,6 +60,7 @@ function pintarMarker(peticion, icono) {
       const marcador = L.marker([arrayCoordenadas[0], arrayCoordenadas[1]], {
         icon: icono
       });
+
       //añadimos popup
       marcador.bindPopup(punto.nombre.content);
 
