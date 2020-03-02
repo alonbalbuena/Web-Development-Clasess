@@ -18,17 +18,21 @@
       integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
       crossorigin=""
     ></script>
+    <!--fuentes google-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Glegoo&display=swap"
+    />
     <!--estilos propios-->
-    <style>
-      #map {
-        height: 700px;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <h1>mapa leaflet</h1>
     <div id="map"></div>
-    <button class="biblios">Biblios</button>
-    <button class="sanidad">Sanidad</button>
+    <div class="botones">
+      <button class="biblios">Biblios</button>
+      <button class="sanidad">Sanidad</button>
+    </div>
   </body>
-  <script src="Main.js"></script>
+  <script type="module" src="Main.js"></script>
 </html>
