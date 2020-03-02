@@ -46,6 +46,11 @@ var map = L.map("map").setView([43.522727, -5.662458], 13);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
 
+for (let index = 0; index < array.length; index++) {
+  const element = array[index];
+  
+}
+
 //FUNCIONES
 function pintarMarker(peticion, icono) {
   peticion.forEach(punto => {
