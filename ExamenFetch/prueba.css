@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+}
+
+.formulario {
+  display: flex;
+  justify-content: space-evenly;
+  height: 30px;
+}
+
+h1 {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  background-color: royalblue;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px black;
+  /*texto*/
+  text-transform: uppercase;
+  font-family: Tahoma;
+  font-weight: bolder;
+  color: white;
+}
+button:hover {
+  background-color: slateblue;
+}
+button:active {
+  transform: translateY(3px);
+}
+
+/*ESTILOS DE LAS LISTAS*/
+li {
+  /*colocamos las listas al centro*/
+  position: relative;
+  left: calc(50% - (80% / 2));
+  width: 80%;
+
+  /*estilos*/
+  list-style: none;
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+li:nth-child(even) {
+  background-color: white;
+}
+li:nth-child(odd) {
+  background-color: rgb(221, 221, 221);
+}
+
+li:hover {
+  background-color: slategray;
+}
+
+/*ICONO DE CARGA POR SI HAY PETICIONES MUY TARDONAS*/
+.loading {
+  /*colocamos al centro*/
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  /*en principio no se ve luego se activa con JS*/
+  display: none;
+
+  border-radius: 50%;
+  border-right: 3px solid red;
+  border-left: 3px solid red;
+  border-top: 3px solid red;
+  width: 40px;
+  height: 40px;
+
+  /*animacion*/
+  animation-name: transformacion;
+  animation-play-state: running;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+}
+
+@keyframes transformacion {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
