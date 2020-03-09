@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+}
+h1 {
+  --ancho:500px;
+  /*colocamos el titulo sobre el propio mapa*/
+  position: absolute;
+  z-index: 1000;
+  /*al centro*/
+  width: var(--ancho);
+  text-align: center;
+  right: calc(50% - (var(--ancho)/2));
+  /*estilos de texto*/
+  margin: 0;
+  font-family: glegoo;
+  font-size: 3em;
+  text-transform: uppercase;
+  color: #1f07b2;
+  text-shadow: 2px 1px #b29b00;
+}
+#map {
+  /*el mapa ocupara toda la pagina*/
+  height: 100vh;
+}
+
+.botones {
+  /*colocamos sobre el mapa*/
+  position: absolute;
+  bottom: 100px;
+  z-index: 1000;
+
+  /*usamos flex y colocamos al centro*/
+  display: flex;
+  height: 40px;
+  width: 1000px;
+  left: calc(50% - 500px);
+}
+button {
+  border: 0;
+  flex: 200px 1 1;
+  transition: 1s;
+  font-family: "glegoo";
+  font-weight: bold;
+  font-size: 1.2em;
+}
+button:nth-child(1) {
+  background-color: #1f07b2;
+  color: #ffe119;
+}
+button:nth-child(2) {
+  background-color: #ffe119;
+  color: #1f07b2;
+}
+button:hover {
+  flex-grow: 8;
+  font-size: 1.5em;
+}

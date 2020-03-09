@@ -29,10 +29,10 @@ function imprimirCalles(calles) {
 
   /*rellenamos la seccion*/
   let seccionCalles = document.querySelector(".calles");
-  calles.forEach(
-    calle =>
-      (seccionCalles.innerHTML += `<li>Calle ${calle.nombre} - Tipo <b>${calle.tipo}</b>,nº de accesos: <b>${calle.nÚmeroaccesos}</b></li>`)
-  );
+  calles.forEach(calle => {
+    const { nombre, tipo, nÚmeroaccesos } = calle;
+    seccionCalles.innerHTML += `<li>Calle ${nombre} - Tipo <b>${tipo}</b>,nº de accesos: <b>${nÚmeroaccesos}</b></li>`;
+  });
 
   /*devolvemos como datos otra promesa pra poder encadenar mas codigo*/
   return new Promise((resolve, reject) => {
