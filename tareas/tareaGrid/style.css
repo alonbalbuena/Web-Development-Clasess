@@ -29,8 +29,9 @@ body {
   display: grid;
   grid-template-rows: 100px 500px 1500px 100px;
   grid-template-columns: 100px 1fr 1fr 100px;
+  row-gap: 30px;
   /*fondo*/
-  background-image: linear-gradient(to bottom right, white, #f29849);
+  background-image: linear-gradient(to bottom right,#f29849,white, #144673);
   background-repeat: no-repeat;
   background-attachment: local;
 }
@@ -41,11 +42,10 @@ header {
   /*estilos texto*/
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
-  line-height: 2.6em;
-  font-size: xx-large;
+  font-size: 5em;
   /*fondo*/
-  background-color: #144673;
-  color: #f0f0f2;
+  color: #144673;
+  text-shadow: 2px 1px 2px #6ca6d9;
 }
 .portfolio {
   grid-row: 2/3;
@@ -67,12 +67,13 @@ footer {
   grid-row: 4/5;
   grid-column: 2/4;
   /*estilos*/
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   line-height: 2.5em;
   font-size: xx-large;
   /*fondo*/
-  background-color: #bf6b04;
+  color: #f29849;
+  text-shadow: 1px 2px 4px black;
 }
 
 /*ZONA SOBREMI estilos*/
@@ -113,7 +114,7 @@ footer {
   border-left: none;
   background-color: rgba(0, 0, 0, 0.459);
   /*textos*/
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .sobremi > img {
   clip-path: circle(160px);

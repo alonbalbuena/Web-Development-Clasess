@@ -5,10 +5,10 @@ const loading = document.querySelector(".loading");
 
 //queremos que nos aparezcan los usuarios nada mas cargar la pagina
 window.onload = getJSON().then(usuarios =>
-  usuarios.forEach(usuario => {
+  usuarios.forEach(({id,name}) => 
     //guardamos el id de usuario en el value para poder filtrar en la funcion getUser
-    select.innerHTML += `<option value=${usuario.id}>${usuario.name}</option>`;
-  })
+    select.innerHTML += `<option value=${id}>${name}</option>`
+  )
 );
 
 //QUE PASA CUANDO cambio de opcion en el select

@@ -30,3 +30,6 @@ function añadirProducto() {
 
   document.querySelector(".seccion-carrito").appendChild(nuevoProducto);
 }
+
+//DEFINO LOS COMPONENTES
+import { Producto } from "./Producto.js";

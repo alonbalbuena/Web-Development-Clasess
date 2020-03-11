@@ -25,40 +25,39 @@
   </head>
 
   <body>
-    <!--WEB COMPONENTS-->
-    <script src="./js/componentes.js"></script>
     <header class="navegacion">
       <img
-        class="navegacion__carrito"
-        src="./imagenes/cesta.png"
-        alt="carrito"
+      class="navegacion__carrito"
+      src="./imagenes/cesta.png"
+      alt="carrito"
       />
     </header>
     <main>
       <section class="seccion">
         <h1 class="seccion__titulo">Productos</h1>
-
         <div class="seccion__productos">
+          <!--LIGHT DOM-->
+          <producto-nuevo id="host"></producto-nuevo>
           <producto-nuevo></producto-nuevo>
           <producto-nuevo></producto-nuevo>
           <producto-nuevo></producto-nuevo>
           <producto-nuevo></producto-nuevo>
           <producto-nuevo></producto-nuevo>
           <producto-nuevo></producto-nuevo>
-          <producto-nuevo></producto-nuevo>
-          </div>
+          <!--FIN LIGHT DOM-->
         </div>
       </section>
       <section class="seccion-creditos">
         <h1>Creado por alonso</h1>
       </section>
     </main>
-
+    
     <section class="seccion-carrito">
       <h1 class="seccion-carrito__titulo">Carrito</h1>
       <div class="seccion-carrito__productos"></div>
     </section>
   </body>
   <!--Script-->
-  <script src="./js/tienda.js"></script>
-</html>
+  <!--Y WEB COMPONENTS-->
+  <script type="module" src="./js/tienda.js"></script>
+  </html>

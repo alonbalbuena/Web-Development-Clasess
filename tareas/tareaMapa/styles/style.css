@@ -54,4 +54,5 @@ button:nth-child(2) {
 button:hover {
   flex-grow: 8;
   font-size: 1.5em;
+  cursor: pointer;
 }

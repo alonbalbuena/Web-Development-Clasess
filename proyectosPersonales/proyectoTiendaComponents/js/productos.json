@@ -1,13 +1,44 @@
-[
+{
     {
-        src-front:"../imagenes/camiseta.jpg",
-        src-back:"../imagenes/camiseta2.jpg",
-        nombre:"camiseta",
-        precio:"15€"
-    },{
-        src-front:"../imagenes/leopardo1.jpg",
-        src-back:"../imagenes/leopardo2.jpg",
-        nombre:"camiseta",
-        precio:"15€"
-    }
-]
+        "src-front": "../imagenes/camiseta.jpg",
+        "src-back": "../imagenes/camiseta2.jpg",
+        nombre: "camiseta",
+        precio: "15€"
+      },
+      {
+        "src-front": "../imagenes/leopardo1.jpg",
+        "src-back": "../imagenes/leopardo2.jpg",
+        nombre: "leopardo",
+        precio: "15€"
+      },
+      {
+        "src-front": "../imagenes/vestido1.jpg",
+        "src-back": "../imagenes/vestido2.jpg",
+        nombre: "vestido",
+        precio: "10€"
+      },
+      {
+        "src-front": "../imagenes/camisa1.jpg",
+        "src-back": "../imagenes/camisa2.jpg",
+        nombre: "camisa",
+        precio: "5€"
+      },
+      {
+        "src-front": "../imagenes/sudadera1.jpg",
+        "src-back": "../imagenes/sudadera2.jpg",
+        nombre: "sudadera",
+        precio: "9€"
+      },
+      {
+        "src-front": "../imagenes/camisetahombre1.jpg",
+        "src-back": "../imagenes/camisetahombre2.jpg",
+        nombre: "camisetaHombre",
+        precio: "7€"
+      },
+      {
+        "src-front": "../imagenes/corazon1.jpg",
+        "src-back": "../imagenes/corazaon2.jpg",
+        nombre: "corazon",
+        precio: "11€"
+      }
+}

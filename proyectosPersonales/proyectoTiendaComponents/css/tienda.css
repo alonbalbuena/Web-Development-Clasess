@@ -6,6 +6,11 @@
   --naranja: #f28e85;
 }
 
+/*podemos acceder al shadow desde fuera*/
+#host::shadow > .boton{
+  background-color: blue;
+}
+
 body {
   margin: 0px;
   padding: 0px;
@@ -96,7 +101,7 @@ main {
 .seccion-creditos {
   /*determinamos que zona del grid va a cubrir*/
   grid-column: 1/4;
-  grid-row: 3/4
+  grid-row: 3/4;
 
   background-color: var(--marron);
   text-align: center;
@@ -118,97 +123,4 @@ main {
   align-self: center;
 }
 
-/*BLOQUE DE CADA PRODUCTO*/
-.producto {
-  background-color: var(--blanco);
-  position: relative; /*para colocar una foto encima de la otra*/
 
-  /*colocamos el contenido dentro de cada producto*/
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-
-  /*cada elemento dentro del producto ocupe todo el espacio*/
-  flex: 1 0 200px;
-  height: 253px;
-
-  /*transicion al pasar el raton por encima para cambiar la foto*/
-  transition: background-image 0.5s ease;
-}
-.producto:hover > .boton {
-  /*cuando pasamos el raton por encima aparecen el boton*/
-  opacity: 1;
-}
-/*transicion de rotacion entre las dos imagenes.
-1- una foto la giramos desde el 0º al 90º
-2- giramos la otra de 90º al 180º
-3- backface-visibility para que no salga la parte de atras de la carta */
-.producto:hover > .producto__imagen--rotada1 {
-  transform: rotateY(180deg);
-}
-.producto:hover > .producto__imagen--rotada2 {
-  transform: rotateY(360deg);
-}
-.producto__imagen {
-  /*tamaño de imagen, cubriendo toda la caja*/
-  height: 100%;
-  width: 100%;
-  /*manteniendo a su vez su relacion de aspecto*/
-  object-fit: contain;
-}
-.producto__imagen--rotada1 {
-  /*transicion de rotacion inicial*/
-  transform: rotateY(0deg);
-  transition: transform 0.5s ease-in-out;
-  backface-visibility: hidden;
-}
-.producto__imagen--rotada2 {
-  position: absolute;
-  /*transicion de rotacion final*/
-  transform: rotateY(90deg);
-  transition: transform 0.5s ease-in-out;
-  backface-visibility: hidden;
-}
-
-/*INFORMACION DEL PRODUCTO*/
-.producto__info {
-  display: flex;
-  align-items: baseline; /*alineamos el tex*/
-  justify-content: space-around;
-
-  /*colocamos la informacion sobre la imagen,cambiando a la vez el tamaño de la celda del producto*/
-  position: absolute;
-  bottom: 0;
-
-  background: rgba(255, 255, 255, 0.7);
-  width: 100%;
-  font-family: "Big Shoulders Text", cursive;
-}
-.producto__info-nombre {
-  font-size: 16px;
-}
-.producto__info-precio {
-  font-weight: bold;
-}
-
-/*BOTON GENERICO*/
-.boton {
-  background-color: var(--rojo);
-  color: var(--blanco);
-  border: none;
-  box-shadow: 2px 2px black;
-  font-weight: bold;
-  text-transform: capitalize;
-
-  width: 100%;
-  height: 30px;
-  /*colocamos el boton sobre la informacion del producto*/
-  position: absolute;
-  bottom: 28%;
-  /*transicion de aparicion del boton*/
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.boton:hover {
-  background-color: var(--naranja);
-}
