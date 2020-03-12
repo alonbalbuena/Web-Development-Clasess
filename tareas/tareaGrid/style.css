@@ -1,20 +1,3 @@
-/* Color Theme Swatches in Hex */
-.Arquitectura-1-hex {
-  color: #6c9bd9;
-}
-.Arquitectura-2-hex {
-  color: #144673;
-}
-.Arquitectura-3-hex {
-  color: #6ca6d9;
-}
-.Arquitectura-4-hex {
-  color: #96bfd9;
-}
-.Arquitectura-5-hex {
-  color: #f29849;
-}
-
 html {
   margin: 0;
   /*asi nos permite poner el gradiente al todo el body*/
@@ -27,25 +10,45 @@ body {
   overflow-x: hidden;
   /*delimitamos el grid de toda la pagina*/
   display: grid;
-  grid-template-rows: 100px 500px 1500px 100px;
+  grid-template-rows: 200px 500px 1500px 100px;
   grid-template-columns: 100px 1fr 1fr 100px;
-  row-gap: 30px;
+  row-gap: 35px;
+  /*separamos los dos apartados personales*/
+  column-gap: 30px;
   /*fondo*/
-  background-image: linear-gradient(to bottom right,#f29849,white, #144673);
+  background-image: linear-gradient(to bottom right, #e0e5ec, #ffffff);
   background-repeat: no-repeat;
   background-attachment: local;
+
+  /*animacion de carga de la pagina*/
+  clip-path: circle(0%);
+  animation: load 2s forwards;
+}
+
+@keyframes load {
+  from {
+    clip-path: circle(0%);
+  }
+  to {
+    clip-path: circle(100%);
+  }
 }
 
 header {
+  margin-top: 20px;
   grid-row: 1/2;
   grid-column: 2/4;
   /*estilos texto*/
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Monoton", cursive;
   text-align: center;
-  font-size: 5em;
+  line-height: 1.4em;
+  font-size: 8em;
   /*fondo*/
-  color: #144673;
-  text-shadow: 2px 1px 2px #6ca6d9;
+  color: #e12d48;
+  /*neumorphismo*/
+  box-shadow: -9px -9px 16px#ffffff, 9px 9px 16px #a3b1c6;
+  border-radius: 15px;
+  background-color: #e0e5ec;
 }
 .portfolio {
   grid-row: 2/3;
@@ -53,7 +56,7 @@ header {
 }
 .sobremi {
   grid-row: 2/3;
-  grid-column: 3/5;
+  grid-column: 3/4;
 }
 
 main {
@@ -72,8 +75,7 @@ footer {
   line-height: 2.5em;
   font-size: xx-large;
   /*fondo*/
-  color: #f29849;
-  text-shadow: 1px 2px 4px black;
+  color: #e25a00;
 }
 
 /*ZONA SOBREMI estilos*/
@@ -83,11 +85,10 @@ footer {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: stretch;
-  /*estilos*/
-  background-color: rgba(0, 0, 0, 0.459);
-  border-right: none;
-  border-top-left-radius: 90px;
-  border-bottom-left-radius: 90px;
+  /*neumorphismo*/
+  box-shadow: -9px -9px 16px#ffffff, 9px 9px 16px #a3b1c6;
+  border-radius: 15px;
+  background-color: #e0e5ec;
 }
 
 .portfolio__cualidad {
@@ -105,20 +106,40 @@ footer {
   /*se auto ajusta la imagen al contenedor*/
   height: 100px;
 }
+
 .sobremi {
   /*alineamos los elementos al centro*/
   display: flex;
   flex-direction: column;
   align-items: center;
-  /*fondo*/
-  border-left: none;
-  background-color: rgba(0, 0, 0, 0.459);
   /*textos*/
   font-family: Arial, Helvetica, sans-serif;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  /*neumorphismo*/
+  box-shadow: -9px -9px 16px#ffffff, 9px 9px 16px #a3b1c6;
+  border-radius: 15px;
+  background-color: #e0e5ec;
 }
-.sobremi > img {
-  clip-path: circle(160px);
+.sombra {
+  /*sombra sobre la foto*/
+  filter: drop-shadow(3px 6px 6px rgba(0, 0, 0, 0.603));
+}
+.sobremi > .sombra > img {
   object-fit: contain;
+  /*transicion de un circulo grande a uno piqueño al cargar la pagina*/
+  clip-path: circle(30px at 50% 50%);
+  animation: zoom 2s forwards;
+}
+@keyframes zoom {
+  from {
+    clip-path: circle(30px at 50% 50%);
+  }
+  to {
+    clip-path: circle(160px);
+  }
 }
 .sobremi > h1 {
   margin: 0;
@@ -191,6 +212,8 @@ article > img {
   object-position: center;
   width: 100%;
   height: 100%;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px black;
 }
 
 /*ANIMACIONES*/
