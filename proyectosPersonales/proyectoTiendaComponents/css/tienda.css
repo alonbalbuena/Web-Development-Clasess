@@ -85,10 +85,17 @@ main {
 /*CARRITO*/
 .seccion-carrito {
   background-color: var(--marron);
+  border-left: 6px solid black;
+  border-bottom: 6px solid black;
+  border-right: 6px solid black;
+  border-radius: 0px 0px 5px 5px;
+  box-sizing: border-box;
+
   /*colocamos el carrito justo debajo de la barra de nav*/
-  position: absolute;
+  position: fixed;
   top: 50px;
   right: 0;
+  z-index: 1;
 
   width: 300px;
 
@@ -97,7 +104,21 @@ main {
   overflow-y: scroll;
   transition: max-height 0.5s ease-in-out;
 }
+/*CUSTOM SCROLLBAR*/
+.seccion-carrito::-webkit-scrollbar {
+  width: 5px;
+  background-color: var(--blanco);
+}
 
+.seccion-carrito::-webkit-scrollbar-thumb {
+  background-color: black;
+  border: 1px solid var(--blanco);
+}
+
+.seccion-carrito__titulo {
+  font-family: "Big Shoulders Text", cursive;
+  text-align: center;
+}
 .seccion-creditos {
   /*determinamos que zona del grid va a cubrir*/
   grid-column: 1/4;

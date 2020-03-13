@@ -1,4 +1,4 @@
-export class Producto extends HTMLElement {
+class Producto extends HTMLElement {
   constructor() {
     super();
 
@@ -16,9 +16,7 @@ export class Producto extends HTMLElement {
   href="./css/Producto.css"
   rel="stylesheet"
 />`;
-
     /*ahora lo que queramos tenemos que meter en el DOM DE ESTE ELEMENTO CREADO(este es un dom distinto al principal)*/
-
     this.shadowRoot.innerHTML += `
     <img
     class="producto__imagen producto__imagen--rotada1"
@@ -30,10 +28,46 @@ export class Producto extends HTMLElement {
   />
   <button class="boton">añadir</button>
   <div class="producto__info">
-    <h1 class="producto__info-nombre">Producto 8</h1>
-    <p class="producto__info-precio">11€</p>
+  <h1 class="producto__info-nombre">Producto 8</h1>
+  <p class="producto__info-precio">11€</p>
   </div>`;
+
+    /*FUNCIONES DEL DOM*/
+    //Introducimos funcion de AGREGAR UN PRODUCTO
+    this.shadowRoot
+      .querySelector(".boton")
+      .addEventListener("click", this.añadirProducto);
+
+    this.nombre = this.shadowRoot.querySelector(
+      ".producto__info-nombre"
+    ).innerHTML;
+  }
+
+  attributeChangedCallback(name, oldVal, newVal) {
+    switch (name) {
+      case "data-nombre":
+        this.nombre = newVal;
+        break;
+      default:
+        console.log(`defecto`);
+        break;
+    }
+  }
+
+  //definimos cuales van a ser las propiedades que definiremos en el producto(IMPORTANTE QUE ES ETATICO)
+  static get observedAttributes() {
+    return ["data-nombre"];
+  }
+
+  añadirProducto() {
+    document.querySelector(
+      ".seccion-carrito__productos"
+    ).innerHTML += `<div class="producto-carrito">
+    <img class="producto-carrito__imagen" src = "" alt =" descripcion">
+    <p class="producto-carrito__descripcion"></p >
+    </div>`;
   }
 }
 
+/*DEFINIMOS LA ETIQUETA*/
 window.customElements.define("producto-nuevo", Producto);
