@@ -8,9 +8,7 @@ class Producto extends HTMLElement {
     this.attachShadow({ mode: "open" });
     //los parametros es un objeto al cual le podemos pasar lo que necesitemos
     //ahora #shadow-root es un objeto dentro del producto(mirar html)
-  }
 
-  connectedCallback() {
     /*linkamos el estilo externamente en vez de hacerlo desde aqui*/
     this.shadowRoot.innerHTML += `<link
   href="./css/Producto.css"
@@ -28,35 +26,41 @@ class Producto extends HTMLElement {
   />
   <button class="boton">añadir</button>
   <div class="producto__info">
-  <h1 class="producto__info-nombre">Producto 8</h1>
-  <p class="producto__info-precio">11€</p>
+  <h1 class="producto__info-nombre">Producto-test</h1>
+  <p class="producto__info-precio">00€</p>
   </div>`;
 
+    /*VARIABLES UTILES*/
+    this.nombreProducto = this.shadowRoot.querySelector(
+      ".producto__info-nombre"
+    );
+    this.precio = this.shadowRoot.querySelector(".producto__info-precio");
+  }
+
+  connectedCallback() {
     /*FUNCIONES DEL DOM*/
     //Introducimos funcion de AGREGAR UN PRODUCTO
     this.shadowRoot
       .querySelector(".boton")
       .addEventListener("click", this.añadirProducto);
-
-    this.nombre = this.shadowRoot.querySelector(
-      ".producto__info-nombre"
-    ).innerHTML;
-  }
-
-  attributeChangedCallback(name, oldVal, newVal) {
-    switch (name) {
-      case "data-nombre":
-        this.nombre = newVal;
-        break;
-      default:
-        console.log(`defecto`);
-        break;
-    }
   }
 
   //definimos cuales van a ser las propiedades que definiremos en el producto(IMPORTANTE QUE ES ETATICO)
   static get observedAttributes() {
-    return ["data-nombre"];
+    return ["data-nombre","data-precio"];
+  }
+
+  //SIN OBSERVES ATTRIBUTES NO FUNCIONA
+  attributeChangedCallback(name, oldVal, newVal) {
+    /*IMportante crear el html en el constructor porque este metodo se usa antes incluso que el connectedCallaback()*/
+    switch (name) {
+      case "data-nombre":
+        this.nombreProducto.textContent = newVal;
+        break;
+      case "data-precio":
+        this.precio.textContent = newVal;
+        break;
+    }
   }
 
   añadirProducto() {
