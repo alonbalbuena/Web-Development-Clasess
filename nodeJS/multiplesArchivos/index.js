@@ -1,11 +1,8 @@
 const http = require("http");
+const url = require("url");
 
-const servidor = http.createServer(handleServer);
-
-var handleServer = (request, response) => {
-  response.writeHead(200, {"Content-type":"text/html"});
+http.createServer((request, response) => {
+  response.writeHead(200, { "Content-type": "text/html" });
   console.log("server corriendo...");
   response.end();
-};
-
-servidor.listen(80);
+}).listen(80);
